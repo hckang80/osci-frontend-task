@@ -11,6 +11,7 @@ import { Box, xcss } from '@atlaskit/primitives';
 
 import DynamicTable from '@atlaskit/dynamic-table';
 import { useQuery } from 'react-query';
+import { fetcher } from 'lib/utils';
 
 interface User {
   id: number;
@@ -61,9 +62,7 @@ export const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
 
   const fetchUserList = () => {
-    return fetch(`${process.env.REACT_APP_BASE_URL}/users`)
-      .then((response) => response.json())
-      .then((data) => data);
+    return fetcher<User[]>('/users');
   };
 
   const { isLoading, isError, data, error } = useQuery<User[]>('users', fetchUserList, {

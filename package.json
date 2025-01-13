@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@atlaskit/avatar": "^21.17.7",
+    "@atlaskit/dropdown-menu": "^12.24.1",
+    "@atlaskit/dynamic-table": "^17.0.2",
+    "@atlaskit/link": "^2.0.1",
     "@testing-library/react": "^16.1.0",
     "cra-template-typescript": "1.2.0",
     "react": "^16.14.0",

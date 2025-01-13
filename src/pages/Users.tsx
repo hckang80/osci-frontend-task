@@ -2,14 +2,16 @@
  * @jsxRuntime classic
  * @jsx jsx
  */
-import React, { FC, ReactNode, useState } from 'react';
+import React, { FC, Fragment, ReactNode, useState } from 'react';
 import Avatar from '@atlaskit/avatar';
 import Link from '@atlaskit/link';
 
 import { css, jsx } from '@emotion/react';
 import { Box, xcss } from '@atlaskit/primitives';
 
+import Textfield from '@atlaskit/textfield';
 import DynamicTable from '@atlaskit/dynamic-table';
+import SearchIcon from '@atlaskit/icon/core/migration/search';
 import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -122,18 +124,21 @@ export const Users = () => {
   }));
 
   return (
-    <DynamicTable
-      caption="List of US Presidents"
-      head={head}
-      rows={rows}
-      rowsPerPage={5}
-      defaultPage={currentPage}
-      isFixedSize
-      isLoading={isLoading}
-      defaultSortKey="term"
-      defaultSortOrder="ASC"
-      onSort={() => console.log('onSort')}
-      onSetPage={(page) => changePage(page)}
-    />
+    <Fragment>
+      <Textfield placeholder="Search" elemBeforeInput={<SearchIcon label="search" />} />
+      <DynamicTable
+        caption="List of US Presidents"
+        head={head}
+        rows={rows}
+        rowsPerPage={5}
+        defaultPage={currentPage}
+        isFixedSize
+        isLoading={isLoading}
+        defaultSortKey="term"
+        defaultSortOrder="ASC"
+        onSort={() => console.log('onSort')}
+        onSetPage={(page) => changePage(page)}
+      />
+    </Fragment>
   );
 };

@@ -2,7 +2,7 @@
  * @jsxRuntime classic
  * @jsx jsx
  */
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import Avatar from '@atlaskit/avatar';
 import Link from '@atlaskit/link';
 
@@ -10,6 +10,7 @@ import { css, jsx } from '@emotion/react';
 import { Box, xcss } from '@atlaskit/primitives';
 
 import DynamicTable from '@atlaskit/dynamic-table';
+import { useQuery } from 'react-query';
 
 interface User {
   id: number;
@@ -59,11 +60,27 @@ const head = {
 export const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
 
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/users`)
+  const fetchUserList = () => {
+    return fetch(`${process.env.REACT_APP_BASE_URL}/users`)
       .then((response) => response.json())
-      .then((data) => setUsers(data));
-  }, []);
+      .then((data) => data);
+  };
+
+  const { isLoading, isError, data, error } = useQuery<User[]>('users', fetchUserList, {
+    refetchOnWindowFocus: false,
+    retry: 0,
+    onSuccess: (data) => {
+      setUsers(data);
+    },
+    onError: (error) => {
+      if (!(error instanceof Error)) return;
+      console.log(error.message);
+    }
+  });
+
+  if ((isError || !data) && error instanceof Error) {
+    return <span>Error: {error.message}</span>;
+  }
 
   const rows = users.map((user) => ({
     key: user.id + '',
@@ -99,6 +116,7 @@ export const Users = () => {
       rowsPerPage={5}
       defaultPage={1}
       isFixedSize
+      isLoading={isLoading}
       defaultSortKey="term"
       defaultSortOrder="ASC"
       onSort={() => console.log('onSort')}

@@ -9,6 +9,7 @@ import Link from '@atlaskit/link';
 import { css, jsx } from '@emotion/react';
 import { Box, xcss } from '@atlaskit/primitives';
 
+import Form, { Field } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
 import DynamicTable from '@atlaskit/dynamic-table';
 import SearchIcon from '@atlaskit/icon/core/migration/search';
@@ -93,39 +94,67 @@ export const Users = () => {
     }, 0);
   };
 
+  const [fieldValue, setFieldValue] = useState('');
+
   if ((isError || !data) && error instanceof Error) {
     return <span>Error: {error.message}</span>;
   }
 
-  const rows = users.map((user) => ({
-    key: user.id + '',
-    isHighlighted: false,
-    cells: [
-      {
-        key: 'name',
-        content: (
-          <NameWrapper>
-            <AvatarWrapper>
-              <Avatar name={user.name} size="medium" />
-            </AvatarWrapper>
-            <Link href="https://atlassian.design">{user.name}</Link>
-          </NameWrapper>
-        )
-      },
-      {
-        key: 'email',
-        content: user.email
-      },
-      {
-        key: 'phone',
-        content: user.phone
-      }
-    ]
-  }));
+  const rows = users
+    .filter((user) => user.name.toLocaleLowerCase().includes(fieldValue.toLocaleLowerCase()))
+    .map((user) => ({
+      key: user.id + '',
+      isHighlighted: false,
+      cells: [
+        {
+          key: 'name',
+          content: (
+            <NameWrapper>
+              <AvatarWrapper>
+                <Avatar name={user.name} size="medium" />
+              </AvatarWrapper>
+              <Link href="https://atlassian.design">{user.name}</Link>
+            </NameWrapper>
+          )
+        },
+        {
+          key: 'email',
+          content: user.email
+        },
+        {
+          key: 'phone',
+          content: user.phone
+        }
+      ]
+    }));
+
+  const validate = (value = '') => {
+    setFieldValue(value);
+  };
+
+  const handleSubmit = (formState: { userName: string }) => {
+    console.log({ formState });
+  };
 
   return (
     <Fragment>
-      <Textfield placeholder="Search" elemBeforeInput={<SearchIcon label="search" />} />
+      <Form onSubmit={handleSubmit}>
+        {({ formProps }) => (
+          <form {...formProps} name="validation-example">
+            <Field name="userName" validate={validate} defaultValue="">
+              {({ fieldProps, meta: { valid } }: any) => (
+                <Textfield
+                  placeholder="Search"
+                  testId="formValidationTest"
+                  {...fieldProps}
+                  elemBeforeInput={<SearchIcon label="search" />}
+                />
+              )}
+            </Field>
+          </form>
+        )}
+      </Form>
+
       <DynamicTable
         caption="List of US Presidents"
         head={head}

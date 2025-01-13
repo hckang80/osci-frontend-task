@@ -12,6 +12,7 @@ import { Box, xcss } from '@atlaskit/primitives';
 import DynamicTable from '@atlaskit/dynamic-table';
 import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface User {
   id: number;
@@ -77,6 +78,19 @@ export const Users = () => {
     }
   });
 
+  const { search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+  const currentPage = Number(queryParams.get('offset')) || 1;
+
+  const navigate = useNavigate();
+
+  const changePage = (offset: number) => {
+    const timeout = setTimeout(() => {
+      navigate(`?offset=${offset}`);
+      clearTimeout(timeout);
+    }, 0);
+  };
+
   if ((isError || !data) && error instanceof Error) {
     return <span>Error: {error.message}</span>;
   }
@@ -113,13 +127,13 @@ export const Users = () => {
       head={head}
       rows={rows}
       rowsPerPage={5}
-      defaultPage={1}
+      defaultPage={currentPage}
       isFixedSize
       isLoading={isLoading}
       defaultSortKey="term"
       defaultSortOrder="ASC"
       onSort={() => console.log('onSort')}
-      onSetPage={() => console.log('onSetPage')}
+      onSetPage={(page) => changePage(page)}
     />
   );
 };

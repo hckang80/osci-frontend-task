@@ -8,10 +8,17 @@ import { resources } from 'i18n/config';
 function App() {
   const { i18n } = useTranslation();
 
+  const changeLanguage = (lang: string) => {
+    if (lang === i18n.language) return;
+
+    i18n.changeLanguage(lang);
+    localStorage.setItem('lang', lang);
+  };
+
   return (
     <>
       {Object.keys(resources).map((lang) => (
-        <button key={lang} onClick={() => i18n.changeLanguage(lang)}>
+        <button key={lang} onClick={() => changeLanguage(lang)}>
           {lang}
         </button>
       ))}

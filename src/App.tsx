@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import 'i18n/config';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Users, User, Posts } from './pages';
 

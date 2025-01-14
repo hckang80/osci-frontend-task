@@ -161,7 +161,6 @@ export const Users = () => {
                   <Textfield
                     list="user-list"
                     placeholder="Search"
-                    testId="formValidationTest"
                     {...fieldProps}
                     elemBeforeInput={<SearchIcon label="search" />}
                     onKeyUp={handleKeyUp}

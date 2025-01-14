@@ -13,7 +13,7 @@ export const resources = {
 };
 
 i18next.use(initReactI18next).init({
-  lng: navigator.language,
+  lng: localStorage.getItem('lang') || navigator.language,
   fallbackLng: 'en',
   debug: true,
   resources

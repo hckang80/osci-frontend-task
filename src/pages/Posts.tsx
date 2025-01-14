@@ -2,11 +2,9 @@
  * @jsxRuntime classic
  * @jsx jsx
  */
-import React, { FC, Fragment, ReactNode, useMemo, useState } from 'react';
-import Avatar from '@atlaskit/avatar';
+import React, { Fragment, useMemo, useState } from 'react';
 
-import { css, jsx } from '@emotion/react';
-import { Box, xcss } from '@atlaskit/primitives';
+import { jsx } from '@emotion/react';
 
 import Form, { Field } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
@@ -16,51 +14,35 @@ import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-interface User {
+interface Post {
+  userId: number;
   id: number;
-  name: string;
-  email: string;
+  title: string;
+  body: string;
 }
-
-const nameWrapperStyles = css({
-  display: 'flex',
-  alignItems: 'center'
-});
-
-const NameWrapper: FC<{ children: ReactNode }> = ({ children }) => (
-  <span css={nameWrapperStyles}>{children}</span>
-);
-
-const avatarWrapperStyles = xcss({
-  marginInlineEnd: 'space.100'
-});
-
-const AvatarWrapper: FC<{ children: ReactNode }> = ({ children }) => (
-  <Box xcss={avatarWrapperStyles}>{children}</Box>
-);
 
 const head = {
   cells: [
     {
-      key: 'name',
-      content: 'Name',
-      width: 25
+      key: 'id',
+      content: 'No.',
+      width: 4
     },
     {
-      key: 'email',
-      content: 'Email'
+      key: 'title',
+      content: 'Title'
     }
   ]
 };
 
-export const Users = () => {
-  const [users, setUsers] = useState<User[]>([]);
+export const Posts = () => {
+  const [posts, setUsers] = useState<Post[]>([]);
 
   const fetchUserList = () => {
-    return fetcher<User[]>('/users');
+    return fetcher<Post[]>('/posts');
   };
 
-  const { isLoading, isError, data, error } = useQuery<User[]>('users', fetchUserList, {
+  const { isLoading, isError, data, error } = useQuery<Post[]>('posts', fetchUserList, {
     refetchOnWindowFocus: false,
     retry: 0,
     onSuccess: (data) => {
@@ -88,10 +70,7 @@ export const Users = () => {
   const [fieldValue, setFieldValue] = useState('');
   const [searchedValue, setSearchedValue] = useState('');
 
-  const autocompleteList = useMemo(
-    () => [...new Set([...users.map(({ name }) => name), ...users.map(({ email }) => email)])],
-    [users]
-  );
+  const autocompleteList = useMemo(() => [...new Set(posts.map(({ title }) => title))], [posts]);
 
   const filteredAutocompleteList = useMemo(
     () =>
@@ -103,34 +82,25 @@ export const Users = () => {
 
   const rows = useMemo(
     () =>
-      users
-        .filter(
-          (user) =>
-            user.name.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase()) ||
-            user.email.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase())
+      posts
+        .filter((post) =>
+          post.title.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase())
         )
-        .map((user) => ({
-          key: user.id + '',
+        .map((post) => ({
+          key: post.id + '',
           isHighlighted: false,
           cells: [
             {
-              key: 'name',
-              content: (
-                <NameWrapper>
-                  <AvatarWrapper>
-                    <Avatar name={user.name} size="medium" />
-                  </AvatarWrapper>
-                  <Link to={`/users/${user.id}`}>{user.name}</Link>
-                </NameWrapper>
-              )
+              key: 'id',
+              content: post.id
             },
             {
-              key: 'email',
-              content: user.email
+              key: 'title',
+              content: <Link to={`/posts/${post.id}`}>{post.title}</Link>
             }
           ]
         })),
-    [users, searchedValue]
+    [posts, searchedValue]
   );
 
   if ((isError || !data) && error instanceof Error) {
@@ -182,7 +152,7 @@ export const Users = () => {
       <DynamicTable
         head={head}
         rows={rows}
-        rowsPerPage={5}
+        rowsPerPage={10}
         defaultPage={currentPage}
         isFixedSize
         isLoading={isLoading}

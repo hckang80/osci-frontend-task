@@ -2,7 +2,7 @@
  * @jsxRuntime classic
  * @jsx jsx
  */
-import React, { FC, Fragment, ReactNode, useState } from 'react';
+import React, { FC, Fragment, ReactNode, useMemo, useState } from 'react';
 import Avatar from '@atlaskit/avatar';
 import Link from '@atlaskit/link';
 
@@ -88,6 +88,19 @@ export const Users = () => {
 
   const [fieldValue, setFieldValue] = useState('');
 
+  const autocompleteList = useMemo(
+    () => [...new Set(users.map(({ name }) => name)), ...new Set(users.map(({ email }) => email))],
+    [users]
+  );
+
+  const filteredAutocompleteList = useMemo(
+    () =>
+      autocompleteList.filter((item) =>
+        item.toLocaleLowerCase().includes(fieldValue.toLocaleLowerCase())
+      ),
+    [autocompleteList, fieldValue]
+  );
+
   if ((isError || !data) && error instanceof Error) {
     return <span>Error: {error.message}</span>;
   }
@@ -135,12 +148,22 @@ export const Users = () => {
           <form {...formProps} name="validation-example">
             <Field name="userName" validate={validate} defaultValue="">
               {({ fieldProps, meta: { valid } }: any) => (
-                <Textfield
-                  placeholder="Search"
-                  testId="formValidationTest"
-                  {...fieldProps}
-                  elemBeforeInput={<SearchIcon label="search" />}
-                />
+                <Fragment>
+                  <Textfield
+                    list="user-list"
+                    placeholder="Search"
+                    testId="formValidationTest"
+                    {...fieldProps}
+                    elemBeforeInput={<SearchIcon label="search" />}
+                  />
+                  {fieldValue && (
+                    <datalist id="user-list">
+                      {filteredAutocompleteList.map((item) => (
+                        <option key={item} value={item} />
+                      ))}
+                    </datalist>
+                  )}
+                </Fragment>
               )}
             </Field>
           </form>

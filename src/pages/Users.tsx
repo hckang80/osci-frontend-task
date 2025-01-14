@@ -87,6 +87,7 @@ export const Users = () => {
   };
 
   const [fieldValue, setFieldValue] = useState('');
+  const [searchedValue, setSearchedValue] = useState('');
 
   const autocompleteList = useMemo(
     () => [...new Set(users.map(({ name }) => name)), ...new Set(users.map(({ email }) => email))],
@@ -108,8 +109,8 @@ export const Users = () => {
   const rows = users
     .filter(
       (user) =>
-        user.name.toLocaleLowerCase().includes(fieldValue.toLocaleLowerCase()) ||
-        user.email.toLocaleLowerCase().includes(fieldValue.toLocaleLowerCase())
+        user.name.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase()) ||
+        user.email.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase())
     )
     .map((user) => ({
       key: user.id + '',
@@ -138,7 +139,7 @@ export const Users = () => {
   };
 
   const handleSubmit = (formState: { userName: string }) => {
-    console.log({ formState });
+    setSearchedValue(formState.userName);
   };
 
   return (

@@ -13,6 +13,7 @@ import SearchIcon from '@atlaskit/icon/core/migration/search';
 import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface Post {
   userId: number;
@@ -21,21 +22,23 @@ interface Post {
   body: string;
 }
 
-const head = {
-  cells: [
-    {
-      key: 'id',
-      content: 'No.',
-      width: 4
-    },
-    {
-      key: 'title',
-      content: 'Title'
-    }
-  ]
-};
-
 export const Posts = () => {
+  const { t } = useTranslation();
+
+  const head = {
+    cells: [
+      {
+        key: 'id',
+        content: 'No.',
+        width: 4
+      },
+      {
+        key: 'title',
+        content: t('label.title')
+      }
+    ]
+  };
+
   const [posts, setUsers] = useState<Post[]>([]);
 
   const fetchUserList = () => {

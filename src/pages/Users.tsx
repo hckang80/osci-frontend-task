@@ -15,6 +15,7 @@ import SearchIcon from '@atlaskit/icon/core/migration/search';
 import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface User {
   id: number;
@@ -39,21 +40,23 @@ const AvatarWrapper: FC<{ children: ReactNode }> = ({ children }) => (
   <Box xcss={avatarWrapperStyles}>{children}</Box>
 );
 
-const head = {
-  cells: [
-    {
-      key: 'name',
-      content: 'Name',
-      width: 25
-    },
-    {
-      key: 'email',
-      content: 'Email'
-    }
-  ]
-};
-
 export const Users = () => {
+  const { t } = useTranslation();
+
+  const head = {
+    cells: [
+      {
+        key: 'name',
+        content: t('label.name'),
+        width: 25
+      },
+      {
+        key: 'email',
+        content: t('label.email')
+      }
+    ]
+  };
+
   const [users, setUsers] = useState<User[]>([]);
 
   const fetchUserList = () => {

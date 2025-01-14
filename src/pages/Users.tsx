@@ -4,7 +4,6 @@
  */
 import React, { FC, Fragment, ReactNode, useMemo, useState } from 'react';
 import Avatar from '@atlaskit/avatar';
-import Link from '@atlaskit/link';
 
 import { css, jsx } from '@emotion/react';
 import { Box, xcss } from '@atlaskit/primitives';
@@ -15,7 +14,7 @@ import DynamicTable from '@atlaskit/dynamic-table';
 import SearchIcon from '@atlaskit/icon/core/migration/search';
 import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 interface User {
   id: number;
@@ -123,7 +122,7 @@ export const Users = () => {
               <AvatarWrapper>
                 <Avatar name={user.name} size="medium" />
               </AvatarWrapper>
-              <Link href="https://atlassian.design">{user.name}</Link>
+              <Link to={`/users/${user.id}`}>{user.name}</Link>
             </NameWrapper>
           )
         },

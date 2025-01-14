@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Users } from './pages';
+import { Users, User } from './pages';
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/users" replace />}></Route>
         <Route path="/users" element={<Users />}></Route>
+        <Route path="/users/:id" element={<User />}></Route>
       </Routes>
     </Router>
   );

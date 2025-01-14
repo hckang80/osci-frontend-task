@@ -21,7 +21,6 @@ interface User {
   id: number;
   name: string;
   email: string;
-  phone: string;
 }
 
 const nameWrapperStyles = css({
@@ -49,15 +48,8 @@ const head = {
       width: 25
     },
     {
-      key: 'party',
-      content: 'Party',
-      shouldTruncate: true,
-      width: 15
-    },
-    {
-      key: 'term',
-      content: 'Term',
-      shouldTruncate: true
+      key: 'email',
+      content: 'Email'
     }
   ]
 };
@@ -120,10 +112,6 @@ export const Users = () => {
         {
           key: 'email',
           content: user.email
-        },
-        {
-          key: 'phone',
-          content: user.phone
         }
       ]
     }));

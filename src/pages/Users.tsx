@@ -93,7 +93,11 @@ export const Users = () => {
   }
 
   const rows = users
-    .filter((user) => user.name.toLocaleLowerCase().includes(fieldValue.toLocaleLowerCase()))
+    .filter(
+      (user) =>
+        user.name.toLocaleLowerCase().includes(fieldValue.toLocaleLowerCase()) ||
+        user.email.toLocaleLowerCase().includes(fieldValue.toLocaleLowerCase())
+    )
     .map((user) => ({
       key: user.id + '',
       isHighlighted: false,

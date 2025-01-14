@@ -142,6 +142,11 @@ export const Users = () => {
     setSearchedValue(formState.userName);
   };
 
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const selectedAutocompleteList = e.key === 'Unidentified';
+    selectedAutocompleteList && setSearchedValue(e.currentTarget.value);
+  };
+
   return (
     <Fragment>
       <Form onSubmit={handleSubmit}>
@@ -156,6 +161,7 @@ export const Users = () => {
                     testId="formValidationTest"
                     {...fieldProps}
                     elemBeforeInput={<SearchIcon label="search" />}
+                    onKeyUp={handleKeyUp}
                   />
                   {fieldValue && (
                     <datalist id="user-list">

@@ -101,37 +101,41 @@ export const Users = () => {
     [autocompleteList, fieldValue]
   );
 
+  const rows = useMemo(
+    () =>
+      users
+        .filter(
+          (user) =>
+            user.name.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase()) ||
+            user.email.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase())
+        )
+        .map((user) => ({
+          key: user.id + '',
+          isHighlighted: false,
+          cells: [
+            {
+              key: 'name',
+              content: (
+                <NameWrapper>
+                  <AvatarWrapper>
+                    <Avatar name={user.name} size="medium" />
+                  </AvatarWrapper>
+                  <Link to={`/users/${user.id}`}>{user.name}</Link>
+                </NameWrapper>
+              )
+            },
+            {
+              key: 'email',
+              content: user.email
+            }
+          ]
+        })),
+    [users, searchedValue]
+  );
+
   if ((isError || !data) && error instanceof Error) {
     return <span>Error: {error.message}</span>;
   }
-
-  const rows = users
-    .filter(
-      (user) =>
-        user.name.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase()) ||
-        user.email.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase())
-    )
-    .map((user) => ({
-      key: user.id + '',
-      isHighlighted: false,
-      cells: [
-        {
-          key: 'name',
-          content: (
-            <NameWrapper>
-              <AvatarWrapper>
-                <Avatar name={user.name} size="medium" />
-              </AvatarWrapper>
-              <Link to={`/users/${user.id}`}>{user.name}</Link>
-            </NameWrapper>
-          )
-        },
-        {
-          key: 'email',
-          content: user.email
-        }
-      ]
-    }));
 
   const validate = (value = '') => {
     setFieldValue(value);

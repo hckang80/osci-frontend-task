@@ -148,7 +148,7 @@ export const Users = () => {
         {({ formProps }) => (
           <form {...formProps} name="validation-example">
             <Field name="userName" validate={validate} defaultValue="">
-              {({ fieldProps, meta: { valid } }: any) => (
+              {({ fieldProps }) => (
                 <Fragment>
                   <Textfield
                     list="user-list"
@@ -172,16 +172,12 @@ export const Users = () => {
       </Form>
 
       <DynamicTable
-        caption="List of US Presidents"
         head={head}
         rows={rows}
         rowsPerPage={5}
         defaultPage={currentPage}
         isFixedSize
         isLoading={isLoading}
-        defaultSortKey="term"
-        defaultSortOrder="ASC"
-        onSort={() => console.log('onSort')}
         onSetPage={(page) => changePage(page)}
       />
     </Fragment>

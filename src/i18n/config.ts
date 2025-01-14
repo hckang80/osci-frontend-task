@@ -4,7 +4,8 @@ import translation from './en/translation.json';
 import translationKo from './ko/translation.json';
 
 i18next.use(initReactI18next).init({
-  lng: 'en',
+  lng: navigator.language,
+  fallbackLng: 'en',
   debug: true,
   resources: {
     en: {

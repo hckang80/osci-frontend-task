@@ -143,7 +143,7 @@ export const Users = () => {
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const selectedAutocompleteList = e.key === 'Unidentified';
-    selectedAutocompleteList && setSearchedValue(e.currentTarget.value);
+    selectedAutocompleteList && handleSubmit({ userName: e.currentTarget.value });
   };
 
   return (

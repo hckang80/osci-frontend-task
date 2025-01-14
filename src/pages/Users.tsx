@@ -89,7 +89,7 @@ export const Users = () => {
   const [searchedValue, setSearchedValue] = useState('');
 
   const autocompleteList = useMemo(
-    () => [...new Set(users.map(({ name }) => name)), ...new Set(users.map(({ email }) => email))],
+    () => [...new Set([...users.map(({ name }) => name), ...users.map(({ email }) => email)])],
     [users]
   );
 

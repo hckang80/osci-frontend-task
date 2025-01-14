@@ -1,10 +1,8 @@
-export function fetcher<T>(
-  url: string | URL | Request,
-  init: RequestInit = {
+export function fetcher<T>(url: string | URL | Request, init?: RequestInit): Promise<T> {
+  return fetch(`${process.env.REACT_APP_BASE_URL}${url}`, {
     headers: {
       'Content-Type': 'application/json'
-    }
-  }
-): Promise<T> {
-  return fetch(`${process.env.REACT_APP_BASE_URL}${url}`, init).then((res) => res.json());
+    },
+    ...init
+  }).then((res) => res.json());
 }

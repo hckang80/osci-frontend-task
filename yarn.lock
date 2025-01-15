@@ -421,7 +421,7 @@
     bind-event-listener "^3.0.0"
     tiny-invariant "^1.2.0"
 
-"@atlaskit/spinner@^16.3.0":
+"@atlaskit/spinner@^16.3.0", "@atlaskit/spinner@^16.3.5":
   version "16.3.5"
   resolved "https://registry.yarnpkg.com/@atlaskit/spinner/-/spinner-16.3.5.tgz#6dd00f883f6252d3dfd4067486dd64f750f01ada"
   integrity sha512-RwwpBV65Dx+eJ2Cbw/KCaAzHJzrbQKDCmOKi/mr2MEj92S5cbOVvOhMXNKayNBUwrzEtn/wOoP6rOINNQ0u7Ow==

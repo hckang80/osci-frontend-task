@@ -12,6 +12,8 @@ import Form, { Field } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
 import DynamicTable from '@atlaskit/dynamic-table';
 import SearchIcon from '@atlaskit/icon/core/migration/search';
+import { IconButton } from '@atlaskit/button/new';
+import EditIcon from '@atlaskit/icon/glyph/edit';
 import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -46,6 +48,10 @@ export const UsersPage = () => {
       {
         key: 'email',
         content: t('label.email')
+      },
+      {
+        key: 'action',
+        content: 'Action'
       }
     ]
   };
@@ -114,13 +120,23 @@ export const UsersPage = () => {
                   <AvatarWrapper>
                     <Avatar name={user.name} size="medium" />
                   </AvatarWrapper>
-                  <Link to={`/users/${user.id}`}>{user.name}</Link>
+                  <Link to={`/todos/${user.id}`}>{user.name}</Link>
                 </NameWrapper>
               )
             },
             {
               key: 'email',
               content: user.email
+            },
+            {
+              key: 'action',
+              content: (
+                <IconButton
+                  icon={EditIcon}
+                  label="Edit"
+                  onClick={() => navigate(`/users/${user.id}`)}
+                />
+              )
             }
           ]
         })),

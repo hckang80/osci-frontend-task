@@ -10,6 +10,8 @@ import { useMutation, useQuery } from 'react-query';
 import { t } from 'i18next';
 import { User } from 'lib/types';
 
+type UserForm = Omit<User, 'id'>;
+
 export const UserPage = () => {
   const { id = '' } = useParams();
 
@@ -31,7 +33,7 @@ export const UserPage = () => {
     }
   });
 
-  const updateUser = (formState: Omit<User, 'id'>) => {
+  const updateUser = (formState: UserForm) => {
     return fetcher<User>(`/users/${id}`, {
       method: 'PUT',
       body: JSON.stringify(formState)
@@ -55,7 +57,7 @@ export const UserPage = () => {
 
   const { isLoading: isUpdating } = updateUserMutation;
 
-  const handleSubmit = (formState: Omit<User, 'id'>) => {
+  const handleSubmit = (formState: UserForm) => {
     updateUserMutation.mutate(formState);
   };
 

@@ -31,21 +31,23 @@ export const PostsPage = () => {
     ]
   };
 
-  const [posts, setUsers] = useState<Post[]>([]);
-
   const fetchUserList = () => {
     return fetcher<Post[]>('/posts');
   };
 
-  const { isLoading, isError, data, error } = useQuery<Post[]>('posts', fetchUserList, {
+  const {
+    isLoading,
+    isError,
+    data: posts = [],
+    error
+  } = useQuery<Post[]>('posts', fetchUserList, {
     refetchOnWindowFocus: false,
     retry: 0,
     onSuccess: (data) => {
-      setUsers(data);
+      console.log('success', data);
     },
     onError: (error) => {
-      if (!(error instanceof Error)) return;
-      console.log(error.message);
+      console.error(error);
     }
   });
 
@@ -98,7 +100,7 @@ export const PostsPage = () => {
     [posts, searchedValue]
   );
 
-  if ((isError || !data) && error instanceof Error) {
+  if (isError && error instanceof Error) {
     return <span>Error: {error.message}</span>;
   }
 

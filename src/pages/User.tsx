@@ -15,14 +15,12 @@ type UserForm = Omit<User, 'id'>;
 export const UserPage = () => {
   const { id = '' } = useParams();
 
-  const fetchUser = () => fetcher<User>(`/users/${id}`);
-
   const {
     isLoading,
     isError,
     data: user,
     error
-  } = useQuery<User>('user', fetchUser, {
+  } = useQuery<User>('user', () => fetcher<User>(`/users/${id}`), {
     onSuccess: (data) => {
       console.log(data);
     },

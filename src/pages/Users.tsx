@@ -52,19 +52,19 @@ export const UsersPage = () => {
 
   const [users, setUsers] = useState<User[]>([]);
 
-  const fetchUserList = () => {
-    return fetcher<User[]>('/users');
-  };
-
-  const { isLoading, isError, data, error } = useQuery<User[]>('users', fetchUserList, {
-    onSuccess: (data) => {
-      setUsers(data);
-    },
-    onError: (error) => {
-      if (!(error instanceof Error)) return;
-      console.log(error.message);
+  const { isLoading, isError, data, error } = useQuery<User[]>(
+    'users',
+    () => fetcher<User[]>('/users'),
+    {
+      onSuccess: (data) => {
+        setUsers(data);
+      },
+      onError: (error) => {
+        if (!(error instanceof Error)) return;
+        console.log(error.message);
+      }
     }
-  });
+  );
 
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);

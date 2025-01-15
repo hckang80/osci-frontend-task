@@ -37,16 +37,12 @@ export const PostsPage = () => {
     ]
   };
 
-  const fetchUserList = () => {
-    return fetcher<Post[]>('/posts');
-  };
-
   const {
     isLoading,
     isError,
     data: posts = [],
     error
-  } = useQuery<Post[]>('posts', fetchUserList, {
+  } = useQuery<Post[]>('posts', () => fetcher<Post[]>('/posts'), {
     onSuccess: (data) => {
       console.log('success', data);
     },

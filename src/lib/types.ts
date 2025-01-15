@@ -11,3 +11,10 @@ export interface Post {
   content: string;
   createdAt: string;
 }
+
+export interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}

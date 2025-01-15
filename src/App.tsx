@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { UsersPage, UserPage, PostsPage, PostPage } from './pages';
+import { UsersPage, UserPage, PostsPage, PostPage, TodosPage } from './pages';
 import { useTranslation } from 'react-i18next';
 import { resources } from 'i18n/config';
 
@@ -34,6 +34,7 @@ function App() {
           <Route path="/users/:id" element={<UserPage />}></Route>
           <Route path="/posts" element={<PostsPage />}></Route>
           <Route path="/posts/:id" element={<PostPage />}></Route>
+          <Route path="/todos/:id" element={<TodosPage />}></Route>
         </Routes>
       </Router>
     </>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Form, { Field, FormFooter } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
@@ -53,6 +53,8 @@ export const UserPage = () => {
     }
   });
 
+  const { isLoading: isUpdating } = updateUserMutation;
+
   const handleSubmit = (formState: Omit<User, 'id'>) => {
     updateUserMutation.mutate(formState);
   };
@@ -70,15 +72,15 @@ export const UserPage = () => {
           {({ formProps }) => (
             <form {...formProps}>
               <Field name="name" label={t('label.name')} defaultValue={user.name} isRequired>
-                {({ fieldProps }) => <Textfield {...fieldProps} />}
+                {({ fieldProps }) => <Textfield {...fieldProps} isReadOnly={isUpdating} />}
               </Field>
               <Field name="email" label={t('label.email')} defaultValue={user.email} isRequired>
-                {({ fieldProps }) => <Textfield {...fieldProps} />}
+                {({ fieldProps }) => <Textfield {...fieldProps} isReadOnly={isUpdating} />}
               </Field>
               <FormFooter>
                 <ButtonGroup>
                   <Button appearance="subtle">Cancel</Button>
-                  <Button type="submit" appearance="primary" isLoading={false}>
+                  <Button type="submit" appearance="primary" isLoading={isUpdating}>
                     Edit
                   </Button>
                 </ButtonGroup>

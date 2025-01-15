@@ -12,24 +12,18 @@ type CommentType = Omit<Post, 'title'>;
 export const PostPage = () => {
   const { id = '' } = useParams();
 
-  const fetchPost = () => fetcher<Post>(`/posts/${id}`);
-
-  const fetchUserList = () => fetcher<User[]>(`/users`);
-
-  const fetchCommentList = () => fetcher<CommentType[]>(`/comments/post/${id}`);
-
   const result = useQueries([
     {
       queryKey: ['posts'],
-      queryFn: fetchPost
+      queryFn: () => fetcher<Post>(`/posts/${id}`)
     },
     {
       queryKey: ['users'],
-      queryFn: fetchUserList
+      queryFn: () => fetcher<User[]>(`/users`)
     },
     {
       queryKey: ['comments'],
-      queryFn: fetchCommentList
+      queryFn: () => fetcher<CommentType[]>(`/comments/post/${id}`)
     }
   ]);
 

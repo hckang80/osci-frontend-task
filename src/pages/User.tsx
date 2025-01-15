@@ -47,15 +47,21 @@ export const UserPage = () => {
 
   return (
     <>
-      <div>{`User ID: ${id}`}</div>
-      <InlineEditableTextfield
-        defaultValue={editValue}
-        label="Description"
-        editButtonLabel={editValue || placeholderLabel}
-        onConfirm={(value) => setEditValue(value)}
-        placeholder={placeholderLabel}
-        validate={validate}
-      />
+      {!user ? (
+        <div>loading...</div>
+      ) : (
+        <>
+          <div>{`User ID: ${id}`}</div>
+          <InlineEditableTextfield
+            defaultValue={editValue}
+            label="Description"
+            editButtonLabel={editValue || placeholderLabel}
+            onConfirm={(value) => setEditValue(value)}
+            placeholder={placeholderLabel}
+            validate={validate}
+          />
+        </>
+      )}
     </>
   );
 };

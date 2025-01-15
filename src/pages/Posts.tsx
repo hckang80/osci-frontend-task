@@ -11,7 +11,7 @@ import Textfield from '@atlaskit/textfield';
 import DynamicTable from '@atlaskit/dynamic-table';
 import SearchIcon from '@atlaskit/icon/core/migration/search';
 import { useQuery } from 'react-query';
-import { fetcher } from 'lib/utils';
+import { fetcher, toReadableDate } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 import { Post } from 'lib/types';
@@ -101,7 +101,7 @@ export const PostsPage = () => {
             },
             {
               key: 'createdAt',
-              content: post.createdAt
+              content: toReadableDate(post.createdAt)
             }
           ]
         })),

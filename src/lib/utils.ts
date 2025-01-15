@@ -6,3 +6,10 @@ export function fetcher<T>(url: string | URL | Request, init?: RequestInit): Pro
     ...init
   }).then((res) => res.json());
 }
+
+export function toReadableDate(
+  date: Date | string | undefined = new Date(),
+  options?: Intl.DateTimeFormatOptions
+) {
+  return new Intl.DateTimeFormat('en-CA', options).format(new Date(date));
+}

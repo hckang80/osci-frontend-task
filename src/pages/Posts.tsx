@@ -14,14 +14,7 @@ import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
-
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  content: string;
-  createdAt: string;
-}
+import { Post } from 'lib/types';
 
 export const PostsPage = () => {
   const head = {

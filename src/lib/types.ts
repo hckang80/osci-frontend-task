@@ -3,3 +3,11 @@ export interface User {
   name: string;
   email: string;
 }
+
+export interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+}

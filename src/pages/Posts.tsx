@@ -13,7 +13,7 @@ import SearchIcon from '@atlaskit/icon/core/migration/search';
 import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 interface Post {
   userId: number;
@@ -24,8 +24,6 @@ interface Post {
 }
 
 export const PostsPage = () => {
-  const { t } = useTranslation();
-
   const head = {
     cells: [
       {

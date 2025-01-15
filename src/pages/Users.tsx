@@ -15,8 +15,8 @@ import SearchIcon from '@atlaskit/icon/core/migration/search';
 import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { User } from 'lib/types';
+import { t } from 'i18next';
 
 const nameWrapperStyles = css({
   display: 'flex',
@@ -36,8 +36,6 @@ const AvatarWrapper: FC<{ children: ReactNode }> = ({ children }) => (
 );
 
 export const UsersPage = () => {
-  const { t } = useTranslation();
-
   const head = {
     cells: [
       {

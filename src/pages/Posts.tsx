@@ -30,7 +30,7 @@ export const Posts = () => {
     cells: [
       {
         key: 'id',
-        content: 'No.',
+        content: t('label.number'),
         width: 4
       },
       {

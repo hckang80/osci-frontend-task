@@ -1,5 +1,6 @@
 {
   "label": {
+    "number": "번호",
     "name": "이름",
     "email": "이메일",
     "title": "제목"

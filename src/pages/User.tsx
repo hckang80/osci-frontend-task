@@ -39,13 +39,8 @@ export const UserPage = () => {
     return <span>Error: {error.message}</span>;
   }
 
-  console.log({ user });
-
   const validate = (value: string) => {
-    if (value.length <= 6) {
-      return 'Please enter a description longer than 6 characters';
-    }
-    return undefined;
+    return !value.length ? 'Please enter your name' : undefined;
   };
 
   return (
@@ -54,11 +49,9 @@ export const UserPage = () => {
         <Spinner />
       ) : (
         <>
-          <div>{`User ID: ${id}`}</div>
           <InlineEditableTextfield
             defaultValue={editValue}
             label={t('label.name')}
-            editButtonLabel={editValue || placeholderLabel}
             onConfirm={(value) => setEditValue(value)}
             placeholder={placeholderLabel}
             validate={validate}

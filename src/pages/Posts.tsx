@@ -27,6 +27,10 @@ export const PostsPage = () => {
       {
         key: 'title',
         content: t('label.title')
+      },
+      {
+        key: 'createdAt',
+        content: t('label.posted')
       }
     ]
   };
@@ -94,6 +98,10 @@ export const PostsPage = () => {
             {
               key: 'title',
               content: <Link to={`/posts/${post.id}`}>{post.title}</Link>
+            },
+            {
+              key: 'createdAt',
+              content: post.createdAt
             }
           ]
         })),

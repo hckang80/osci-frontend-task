@@ -5,6 +5,7 @@
     "email": "이메일",
     "title": "제목",
     "cancel": "취소",
-    "edit": "수정"
+    "edit": "수정",
+    "posted": "작성일"
   }
 }

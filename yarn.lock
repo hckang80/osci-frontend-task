@@ -96,6 +96,23 @@
   dependencies:
     "@babel/runtime" "^7.0.0"
 
+"@atlaskit/comment@^12.0.4":
+  version "12.0.4"
+  resolved "https://registry.yarnpkg.com/@atlaskit/comment/-/comment-12.0.4.tgz#16b858b17fd1211ed28ea92037f5b919fa56f691"
+  integrity sha512-Z5FRoGZ0z5PH1pYYTSSree8Teh1QRkgjkdIQDQvAsvMNjVkdDl374cfZiI9jSRs5aaaJDbvBkktf/CBXKLS1Wg==
+  dependencies:
+    "@atlaskit/analytics-next" "^10.2.0"
+    "@atlaskit/button" "^20.3.0"
+    "@atlaskit/css" "^0.7.0"
+    "@atlaskit/icon" "^23.3.0"
+    "@atlaskit/lozenge" "^11.12.0"
+    "@atlaskit/platform-feature-flags" "0.3.0"
+    "@atlaskit/primitives" "^13.3.0"
+    "@atlaskit/theme" "^14.0.0"
+    "@atlaskit/tokens" "^3.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@compiled/react" "^0.18.1"
+
 "@atlaskit/css@^0.7.0":
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@atlaskit/css/-/css-0.7.3.tgz#4137c36d416de95b21ae8771265763288c874f17"
@@ -271,6 +288,21 @@
     "@babel/runtime" "^7.0.0"
     "@compiled/react" "^0.18.1"
 
+"@atlaskit/lozenge@^11.12.0":
+  version "11.12.5"
+  resolved "https://registry.yarnpkg.com/@atlaskit/lozenge/-/lozenge-11.12.5.tgz#1505e56016edf8946e7973483e584e8b214ddf38"
+  integrity sha512-jNxD4qFP6viy39HcfHW8OLiRoKD7Y3kvwggKMAGUOfl4Ef7Vq3YjDVO6oIoU5er3o2B4YEN3Xux9GBt8C7R3Hw==
+  dependencies:
+    "@atlaskit/codemod-utils" "^4.2.0"
+    "@atlaskit/css" "^0.7.0"
+    "@atlaskit/platform-feature-flags" "^0.3.0"
+    "@atlaskit/primitives" "^13.3.0"
+    "@atlaskit/theme" "^14.0.0"
+    "@atlaskit/tokens" "^3.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@compiled/react" "^0.18.1"
+    "@emotion/react" "^11.7.1"
+
 "@atlaskit/menu@^2.13.0":
   version "2.13.8"
   resolved "https://registry.yarnpkg.com/@atlaskit/menu/-/menu-2.13.8.tgz#21c4d2902320495b97c7a01873552140347a39c0"
@@ -314,7 +346,7 @@
     "@babel/runtime" "^7.0.0"
     memoize-one "^6.0.0"
 
-"@atlaskit/platform-feature-flags@^0.3.0":
+"@atlaskit/platform-feature-flags@0.3.0", "@atlaskit/platform-feature-flags@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@atlaskit/platform-feature-flags/-/platform-feature-flags-0.3.0.tgz#94dfa0a4ef0a140f6ab0a6de006464de925ecea7"
   integrity sha512-/0u5fFJ0Rw2j4M5wzsXgaHO6Ey12oekPCDTRvmmAIp4GO9T2Swbl80bavLAPSOmSHMhHTSuvRxiJveZXfQ21IQ==

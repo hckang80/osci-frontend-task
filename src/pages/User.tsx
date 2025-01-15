@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Form, { Field, FormFooter } from '@atlaskit/form';
+import Form, { ErrorMessage, Field, FormFooter } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
 import ButtonGroup from '@atlaskit/button/button-group';
 import Button from '@atlaskit/button/new';
@@ -58,7 +58,16 @@ export const UserPage = () => {
   const { isLoading: isUpdating } = updateUserMutation;
 
   const handleSubmit = (formState: UserForm) => {
-    updateUserMutation.mutate(formState);
+    const errors = {
+      email: !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formState.email)
+        ? 'Enter your email in a valid format, like: name@example.com'
+        : undefined
+    };
+
+    const isInvalid = Object.values(errors).some((value) => value !== undefined);
+    !isInvalid && updateUserMutation.mutate(formState);
+
+    return errors;
   };
 
   const navigate = useNavigate();
@@ -79,7 +88,12 @@ export const UserPage = () => {
                 {({ fieldProps }) => <Textfield {...fieldProps} isReadOnly={isUpdating} />}
               </Field>
               <Field name="email" label={t('label.email')} defaultValue={user.email} isRequired>
-                {({ fieldProps }) => <Textfield {...fieldProps} isReadOnly={isUpdating} />}
+                {({ fieldProps, error }) => (
+                  <>
+                    <Textfield {...fieldProps} isReadOnly={isUpdating} />
+                    {error && <ErrorMessage>{error}</ErrorMessage>}
+                  </>
+                )}
               </Field>
               <FormFooter>
                 <ButtonGroup>

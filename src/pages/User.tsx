@@ -23,8 +23,6 @@ export const UserPage = () => {
     data: user,
     error
   } = useQuery<User>('users', fetchUser, {
-    refetchOnWindowFocus: false,
-    retry: 0,
     onSuccess: (data) => {
       console.log(data);
     },

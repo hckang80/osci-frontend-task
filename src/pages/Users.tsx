@@ -57,8 +57,6 @@ export const UsersPage = () => {
   };
 
   const { isLoading, isError, data, error } = useQuery<User[]>('users', fetchUserList, {
-    refetchOnWindowFocus: false,
-    retry: 0,
     onSuccess: (data) => {
       setUsers(data);
     },

@@ -47,8 +47,6 @@ export const PostsPage = () => {
     data: posts = [],
     error
   } = useQuery<Post[]>('posts', fetchUserList, {
-    refetchOnWindowFocus: false,
-    retry: 0,
     onSuccess: (data) => {
       console.log('success', data);
     },

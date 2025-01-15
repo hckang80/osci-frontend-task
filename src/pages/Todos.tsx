@@ -3,12 +3,14 @@ import { fetcher } from 'lib/utils';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import Spinner from '@atlaskit/spinner';
 
 export const TodosPage = () => {
   const { id = '' } = useParams();
 
   const {
-    data: todos,
+    data: todos = [],
+    isLoading,
     isError,
     error
   } = useQuery('todos', () => fetcher<Todo[]>(`/todos/user/${id}`), {
@@ -20,7 +22,9 @@ export const TodosPage = () => {
     }
   });
 
-  if (isError || !todos) return <pre>{JSON.stringify(error, null, 2)}</pre>;
+  if (isError) return <pre>{JSON.stringify(error, null, 2)}</pre>;
+
+  if (isLoading) return <Spinner />;
 
   return <pre>{JSON.stringify(todos, null, 2)}</pre>;
 };

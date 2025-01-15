@@ -4,6 +4,7 @@ import { InlineEditableTextfield } from '@atlaskit/inline-edit';
 import Spinner from '@atlaskit/spinner';
 import { fetcher } from 'lib/utils';
 import { useQuery } from 'react-query';
+import { t } from 'i18next';
 
 interface User {
   id: number;
@@ -23,6 +24,7 @@ export const UserPage = () => {
     retry: 0,
     onSuccess: (data) => {
       setUser(data);
+      setEditValue(data.name);
     },
     onError: (error) => {
       if (!(error instanceof Error)) return;
@@ -31,7 +33,7 @@ export const UserPage = () => {
   });
 
   const placeholderLabel = 'Initial description value';
-  const [editValue, setEditValue] = useState('Default description value');
+  const [editValue, setEditValue] = useState('');
 
   if ((isError || !data) && error instanceof Error) {
     return <span>Error: {error.message}</span>;
@@ -55,7 +57,7 @@ export const UserPage = () => {
           <div>{`User ID: ${id}`}</div>
           <InlineEditableTextfield
             defaultValue={editValue}
-            label="Description"
+            label={t('label.name')}
             editButtonLabel={editValue || placeholderLabel}
             onConfirm={(value) => setEditValue(value)}
             placeholder={placeholderLabel}

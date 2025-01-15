@@ -19,7 +19,8 @@ interface Post {
   userId: number;
   id: number;
   title: string;
-  body: string;
+  content: string;
+  createdAt: string;
 }
 
 export const Posts = () => {

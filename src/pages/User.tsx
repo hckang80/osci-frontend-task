@@ -22,7 +22,7 @@ export const UserPage = () => {
     isError,
     data: user,
     error
-  } = useQuery<User>('users', fetchUser, {
+  } = useQuery<User>('user', fetchUser, {
     onSuccess: (data) => {
       console.log(data);
     },

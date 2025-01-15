@@ -14,7 +14,7 @@ export const PostPage = () => {
 
   const result = useQueries([
     {
-      queryKey: ['posts'],
+      queryKey: ['post'],
       queryFn: () => fetcher<Post>(`/posts/${id}`)
     },
     {

@@ -1,7 +1,10 @@
 {
   "label": {
+    "number": "번호",
     "name": "이름",
     "email": "이메일",
-    "title": "제목"
+    "title": "제목",
+    "cancel": "취소",
+    "edit": "수정"
   }
 }

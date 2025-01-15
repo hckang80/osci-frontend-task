@@ -69,7 +69,7 @@
     "@emotion/react" "^11.7.1"
     "@emotion/serialize" "^1.1.0"
 
-"@atlaskit/button@^20.3.0":
+"@atlaskit/button@^20.3.0", "@atlaskit/button@^20.3.8":
   version "20.3.8"
   resolved "https://registry.yarnpkg.com/@atlaskit/button/-/button-20.3.8.tgz#7eb6852eea1499bd2f106a721a4209846db75055"
   integrity sha512-/QXQpcW92o+Znr2aMOj5CL6GiUcde7IyKZ8E/mnZ5cNwOml6Ln8TRAuW/UQhGphZ2aXk2pv7/kBYEKaPdnp7mg==
@@ -164,7 +164,7 @@
     "@compiled/react" "^0.18.1"
     "@emotion/react" "^11.7.1"
 
-"@atlaskit/form@^11.0.1":
+"@atlaskit/form@^11.0.0", "@atlaskit/form@^11.0.1":
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/@atlaskit/form/-/form-11.0.1.tgz#b78a830fe8d31362cd4f51e6e30547c6995072d9"
   integrity sha512-Nw2NG/5GZgBtUqAKEYyo05nfxwLaq+Vzc71A/Ja+9SQ2RfPjfNZAAk1kJptAA5PFCuZIGhOIyd7xdtWQ2BioOQ==
@@ -201,6 +201,45 @@
     "@atlaskit/tokens" "^3.0.0"
     "@babel/runtime" "^7.0.0"
     "@emotion/react" "^11.7.1"
+
+"@atlaskit/inline-dialog@^16.0.0":
+  version "16.0.1"
+  resolved "https://registry.yarnpkg.com/@atlaskit/inline-dialog/-/inline-dialog-16.0.1.tgz#c74fe7075859e5d4825022ffb305ebe47a02e5de"
+  integrity sha512-wO4v+kY2FDgKMc6H0sK1A2m0KtU5J67kD5PSycoCFrwPuRThLZmYPlYfuB1yjiuXyTfON5he6Vd6q/xwsg+SYw==
+  dependencies:
+    "@atlaskit/analytics-next" "^10.2.0"
+    "@atlaskit/css" "^0.7.0"
+    "@atlaskit/ds-lib" "^3.3.0"
+    "@atlaskit/layering" "^1.0.0"
+    "@atlaskit/platform-feature-flags" "^0.3.0"
+    "@atlaskit/popper" "^6.3.0"
+    "@atlaskit/theme" "^14.0.0"
+    "@atlaskit/tokens" "^3.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@compiled/react" "^0.18.1"
+    bind-event-listener "^3.0.0"
+    react-node-resolver "^1.0.1"
+
+"@atlaskit/inline-edit@^14.1.0":
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/@atlaskit/inline-edit/-/inline-edit-14.1.0.tgz#c3600bb6f0a3695c92d8ba6cd27974ef62c2c890"
+  integrity sha512-8WuZlT3FLxxO4agWV9JTGwGfqGt0Eqf4n+O9n4doUN/aggb3u1WKa8CfWaNadczV1bSqpJySTE6ppOZxhwDuWQ==
+  dependencies:
+    "@atlaskit/analytics-next" "^10.2.0"
+    "@atlaskit/button" "^20.3.0"
+    "@atlaskit/codemod-utils" "^4.2.0"
+    "@atlaskit/css" "^0.7.0"
+    "@atlaskit/form" "^11.0.0"
+    "@atlaskit/icon" "^23.3.0"
+    "@atlaskit/inline-dialog" "^16.0.0"
+    "@atlaskit/platform-feature-flags" "^0.3.0"
+    "@atlaskit/primitives" "^13.3.0"
+    "@atlaskit/textfield" "^6.7.0"
+    "@atlaskit/theme" "^14.0.0"
+    "@atlaskit/tokens" "^3.0.0"
+    "@atlaskit/visually-hidden" "^1.5.0"
+    "@babel/runtime" "^7.0.0"
+    "@compiled/react" "^0.18.1"
 
 "@atlaskit/interaction-context@^2.4.0":
   version "2.4.0"
@@ -382,7 +421,7 @@
     bind-event-listener "^3.0.0"
     tiny-invariant "^1.2.0"
 
-"@atlaskit/spinner@^16.3.0":
+"@atlaskit/spinner@^16.3.0", "@atlaskit/spinner@^16.3.5":
   version "16.3.5"
   resolved "https://registry.yarnpkg.com/@atlaskit/spinner/-/spinner-16.3.5.tgz#6dd00f883f6252d3dfd4067486dd64f750f01ada"
   integrity sha512-RwwpBV65Dx+eJ2Cbw/KCaAzHJzrbQKDCmOKi/mr2MEj92S5cbOVvOhMXNKayNBUwrzEtn/wOoP6rOINNQ0u7Ow==
@@ -393,7 +432,7 @@
     "@babel/runtime" "^7.0.0"
     "@emotion/react" "^11.7.1"
 
-"@atlaskit/textfield@^6.7.1":
+"@atlaskit/textfield@^6.7.0", "@atlaskit/textfield@^6.7.1":
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/@atlaskit/textfield/-/textfield-6.7.1.tgz#42a118a916ddf4bc99ce9713de4b2220eca829fc"
   integrity sha512-jb17KzFfaJ8zkbAwEfGtpuv1Qn9ypuN19u0UoBCwo2ty77ogvRI25pYOXel+z3us1btS2omQt/WulPrcnalsNA==
@@ -8535,6 +8574,11 @@ react-is@^18.0.0:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.3.1.tgz#e83557dc12eae63a99e003a46388b1dcbb44db7e"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
+
+react-node-resolver@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-node-resolver/-/react-node-resolver-1.0.1.tgz#1798a729c0e218bf2f0e8ddf79c550d4af61d83a"
+  integrity sha512-IiSe0h2+IJo4enSlbdYjdwJnY86A7TwNxnfQVG2yApxVkHj9es1jum9Lb2aiBXKkLnwAj7ufBBlAa0ROU0o9nA==
 
 react-popper@^2.3.0:
   version "2.3.0"

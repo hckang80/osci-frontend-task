@@ -4,6 +4,9 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import Spinner from '@atlaskit/spinner';
+import DynamicTable from '@atlaskit/dynamic-table';
+import { t } from 'i18next';
+import TaskIcon from '@atlaskit/icon/core/migration/task';
 
 export const TodosPage = () => {
   const { id = '' } = useParams();
@@ -26,5 +29,34 @@ export const TodosPage = () => {
 
   if (isLoading) return <Spinner />;
 
-  return <pre>{JSON.stringify(todos, null, 2)}</pre>;
+  const head = {
+    cells: [
+      {
+        key: 'title',
+        content: t('label.title')
+      },
+      {
+        key: 'done',
+        content: ''
+      }
+    ]
+  };
+
+  const rows = todos.map((todo) => {
+    return {
+      key: todo.id + '',
+      cells: [
+        {
+          key: 'title',
+          content: todo.title
+        },
+        {
+          key: 'done',
+          content: todo.completed ? <TaskIcon label="completed" /> : ''
+        }
+      ]
+    };
+  });
+
+  return <DynamicTable head={head} rows={rows} isFixedSize isLoading={isLoading} />;
 };

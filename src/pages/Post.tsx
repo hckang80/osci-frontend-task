@@ -34,8 +34,12 @@ export const PostPage = () => {
     setIsLoadingFinished(isLoadingFinished);
   }, [result]);
 
-  const [{ data: post }, { data: users }] = result;
+  const [{ data: post }, { data: users = [] }] = result;
   console.log({ post, users });
+
+  const getUser = (id: number) => users.find((user) => user.id === id);
+  const getUserName = (id: number) => getUser(id)?.name;
+
   return (
     <>
       {!isLoadingFinished || !post || !users ? (
@@ -44,8 +48,8 @@ export const PostPage = () => {
         <>
           <pre>{JSON.stringify(post, null, 2)}</pre>
           <Comment
-            avatar={<Avatar name="Scott Farquhar" />}
-            author={<CommentAuthor>Scott Farquhar</CommentAuthor>}
+            avatar={<Avatar name={getUserName(post.userId)} />}
+            author={<CommentAuthor>{getUserName(post.userId)}</CommentAuthor>}
             type="author"
             time={<CommentTime>{toReadableDate(post.createdAt)}</CommentTime>}
             content={<p>{post.content}</p>}

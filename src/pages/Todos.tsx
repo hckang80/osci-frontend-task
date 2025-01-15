@@ -48,7 +48,7 @@ export const TodosPage = () => {
       cells: [
         {
           key: 'title',
-          content: todo.title
+          content: todo.completed ? <s>{todo.title}</s> : todo.title
         },
         {
           key: 'done',

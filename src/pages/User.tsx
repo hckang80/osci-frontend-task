@@ -6,7 +6,7 @@ import ButtonGroup from '@atlaskit/button/button-group';
 import Button from '@atlaskit/button/new';
 import Spinner from '@atlaskit/spinner';
 import { fetcher } from 'lib/utils';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { t } from 'i18next';
 import { User } from 'lib/types';
 
@@ -29,17 +29,35 @@ export const UserPage = () => {
     }
   });
 
-  if ((isError || !data) && error instanceof Error) {
-    return <span>Error: {error.message}</span>;
-  }
-
-  const handleSubmit = async (formState: Omit<User, 'id'>) => {
-    const data = await fetcher<User>(`/users/${id}`, {
+  const updateUser = (formState: Omit<User, 'id'>) => {
+    return fetcher<User>(`/users/${id}`, {
       method: 'PUT',
       body: JSON.stringify(formState)
     });
-    console.log({ data });
   };
+
+  const updateUserMutation = useMutation(updateUser, {
+    onMutate: (variable) => {
+      console.log('onMutate', variable);
+    },
+    onError: (error, variable, context) => {
+      // error
+    },
+    onSuccess: (data, variables, context) => {
+      console.log('success', data, variables, context);
+    },
+    onSettled: () => {
+      console.log('end');
+    }
+  });
+
+  const handleSubmit = (formState: Omit<User, 'id'>) => {
+    updateUserMutation.mutate(formState);
+  };
+
+  if ((isError || !data) && error instanceof Error) {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <>

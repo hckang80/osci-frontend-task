@@ -10,6 +10,9 @@
   },
   "paragraph": {
     "searchByTitle": "Search by title",
-    "searchByNameOrEmail": "Search by name or email"
+    "searchByNameOrEmail": "Search by name or email",
+    "validate": {
+      "email": "Enter your email in a valid format, like: name@example.com"
+    }
   }
 }

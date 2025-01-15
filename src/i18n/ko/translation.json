@@ -10,6 +10,9 @@
   },
   "paragraph": {
     "searchByTitle": "제목으로 검색",
-    "searchByNameOrEmail": "이름 또는 이메일로 검색"
+    "searchByNameOrEmail": "이름 또는 이메일로 검색",
+    "validate": {
+      "email": "유효한 이메일로 입력해주세요. 예) name@example.com"
+    }
   }
 }

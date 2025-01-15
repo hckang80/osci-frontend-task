@@ -60,7 +60,7 @@ export const UserPage = () => {
   const handleSubmit = (formState: UserForm) => {
     const errors = {
       email: !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formState.email)
-        ? 'Enter your email in a valid format, like: name@example.com'
+        ? t('paragraph.validate.email')
         : undefined
     };
 

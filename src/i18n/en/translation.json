@@ -3,6 +3,8 @@
     "number": "No.",
     "name": "Name",
     "email": "Email",
-    "title": "Title"
+    "title": "Title",
+    "cancel": "Cancel",
+    "edit": "Edit"
   }
 }

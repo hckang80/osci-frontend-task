@@ -82,10 +82,10 @@ export const UserPage = () => {
               <FormFooter>
                 <ButtonGroup>
                   <Button appearance="subtle" onClick={() => navigate(-1)}>
-                    Cancel
+                    {t('label.cancel')}
                   </Button>
                   <Button type="submit" appearance="primary" isLoading={isUpdating}>
-                    Edit
+                    {t('label.edit')}
                   </Button>
                 </ButtonGroup>
               </FormFooter>

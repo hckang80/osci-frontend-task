@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Users, User, Posts } from './pages';
+import { Users, UserPage, Posts } from './pages';
 import { useTranslation } from 'react-i18next';
 import { resources } from 'i18n/config';
 
@@ -31,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/users" replace />}></Route>
           <Route path="/users" element={<Users />}></Route>
-          <Route path="/users/:id" element={<User />}></Route>
+          <Route path="/users/:id" element={<UserPage />}></Route>
           <Route path="/posts" element={<Posts />}></Route>
         </Routes>
       </Router>

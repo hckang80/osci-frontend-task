@@ -7,7 +7,11 @@ import { useParams } from 'react-router-dom';
 export const TodosPage = () => {
   const { id = '' } = useParams();
 
-  const { data: todos } = useQuery('todos', () => fetcher<Todo[]>(`/todos/user/${id}`), {
+  const {
+    data: todos,
+    isError,
+    error
+  } = useQuery('todos', () => fetcher<Todo[]>(`/todos/user/${id}`), {
     onSuccess: (data) => {
       console.log(data);
     },
@@ -15,6 +19,8 @@ export const TodosPage = () => {
       console.error(error);
     }
   });
+
+  if (isError || !todos) return <pre>{JSON.stringify(error, null, 2)}</pre>;
 
   return <pre>{JSON.stringify(todos, null, 2)}</pre>;
 };

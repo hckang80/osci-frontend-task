@@ -13,19 +13,21 @@ import { User } from 'lib/types';
 export const UserPage = () => {
   const { id = '' } = useParams();
 
-  const [user, setUser] = useState<User | null>(null);
-
   const fetchUser = () => fetcher<User>(`/users/${id}`);
 
-  const { isLoading, isError, data, error } = useQuery<User>('users', fetchUser, {
+  const {
+    isLoading,
+    isError,
+    data: user,
+    error
+  } = useQuery<User>('users', fetchUser, {
     refetchOnWindowFocus: false,
     retry: 0,
     onSuccess: (data) => {
-      setUser(data);
+      console.log(data);
     },
     onError: (error) => {
-      if (!(error instanceof Error)) return;
-      console.log(error.message);
+      console.error(error);
     }
   });
 
@@ -41,7 +43,7 @@ export const UserPage = () => {
       console.log('onMutate', variable);
     },
     onError: (error, variable, context) => {
-      // error
+      console.error(error);
     },
     onSuccess: (data, variables, context) => {
       console.log('success', data, variables, context);
@@ -55,13 +57,13 @@ export const UserPage = () => {
     updateUserMutation.mutate(formState);
   };
 
-  if ((isError || !data) && error instanceof Error) {
+  if (isError && error instanceof Error) {
     return <span>Error: {error.message}</span>;
   }
 
   return (
     <>
-      {!user ? (
+      {isLoading || !user ? (
         <Spinner />
       ) : (
         <Form onSubmit={handleSubmit}>

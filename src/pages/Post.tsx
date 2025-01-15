@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '@atlaskit/spinner';
 import Avatar from '@atlaskit/avatar';
 import Comment, { CommentAction, CommentAuthor, CommentTime } from '@atlaskit/comment';
-import { fetcher } from 'lib/utils';
+import { fetcher, toReadableDate } from 'lib/utils';
 import { useQuery } from 'react-query';
 import { Post } from 'lib/types';
 
@@ -45,17 +45,12 @@ export const PostPage = () => {
             avatar={<Avatar name="Scott Farquhar" />}
             author={<CommentAuthor>Scott Farquhar</CommentAuthor>}
             type="author"
-            time={<CommentTime>Jun 3, 2022</CommentTime>}
-            content={
-              <p>
-                Hard to believe it’s been 20 years since we started Atlassian, but we’re just
-                getting started!
-              </p>
-            }
+            time={<CommentTime>{toReadableDate(post.createdAt)}</CommentTime>}
+            content={<p>{post.content}</p>}
             actions={[
               <CommentAction>Reply</CommentAction>,
               <CommentAction>Edit</CommentAction>,
-              <CommentAction>Like</CommentAction>
+              <CommentAction>Delete</CommentAction>
             ]}
           >
             <Comment
@@ -64,18 +59,14 @@ export const PostPage = () => {
               time={<CommentTime>Jun 3, 2022</CommentTime>}
               content={<p>Congratulations!</p>}
               actions={[<CommentAction>Reply</CommentAction>, <CommentAction>Like</CommentAction>]}
-            >
-              <Comment
-                avatar={<Avatar name="Sabina Vu" />}
-                author={<CommentAuthor>Sabina Vu</CommentAuthor>}
-                time={<CommentTime>Jun 4, 2022</CommentTime>}
-                content={<p>I wonder what Atlassian will be like 20 years from now?</p>}
-                actions={[
-                  <CommentAction>Reply</CommentAction>,
-                  <CommentAction>Like</CommentAction>
-                ]}
-              />
-            </Comment>
+            ></Comment>
+            <Comment
+              avatar={<Avatar name="Sabina Vu" />}
+              author={<CommentAuthor>Sabina Vu</CommentAuthor>}
+              time={<CommentTime>Jun 4, 2022</CommentTime>}
+              content={<p>I wonder what Atlassian will be like 20 years from now?</p>}
+              actions={[<CommentAction>Reply</CommentAction>, <CommentAction>Like</CommentAction>]}
+            />
           </Comment>
         </>
       )}

@@ -69,7 +69,7 @@
     "@emotion/react" "^11.7.1"
     "@emotion/serialize" "^1.1.0"
 
-"@atlaskit/button@^20.3.0":
+"@atlaskit/button@^20.3.0", "@atlaskit/button@^20.3.8":
   version "20.3.8"
   resolved "https://registry.yarnpkg.com/@atlaskit/button/-/button-20.3.8.tgz#7eb6852eea1499bd2f106a721a4209846db75055"
   integrity sha512-/QXQpcW92o+Znr2aMOj5CL6GiUcde7IyKZ8E/mnZ5cNwOml6Ln8TRAuW/UQhGphZ2aXk2pv7/kBYEKaPdnp7mg==

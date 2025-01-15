@@ -7,5 +7,9 @@
     "cancel": "취소",
     "edit": "수정",
     "posted": "작성일"
+  },
+  "paragraph": {
+    "searchByTitle": "제목으로 검색",
+    "searchByNameOrEmail": "이름 또는 이메일로 검색"
   }
 }

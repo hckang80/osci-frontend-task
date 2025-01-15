@@ -156,7 +156,7 @@ export const UsersPage = () => {
                 <Fragment>
                   <Textfield
                     list="data-list"
-                    placeholder="Search"
+                    placeholder={t('paragraph.searchByNameOrEmail')}
                     {...fieldProps}
                     elemBeforeInput={<SearchIcon label="search" />}
                     onKeyUp={handleKeyUp}

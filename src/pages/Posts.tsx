@@ -134,14 +134,14 @@ export const PostsPage = () => {
               {({ fieldProps }) => (
                 <Fragment>
                   <Textfield
-                    list="data-list"
-                    placeholder="Search"
+                    list="user-list"
+                    placeholder={t('paragraph.searchByTitle')}
                     {...fieldProps}
                     elemBeforeInput={<SearchIcon label="search" />}
                     onKeyUp={handleKeyUp}
                   />
                   {fieldValue && (
-                    <datalist id="data-list">
+                    <datalist id="user-list">
                       {filteredAutocompleteList.map((item) => (
                         <option key={item} value={item} />
                       ))}

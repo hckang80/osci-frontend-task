@@ -16,6 +16,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 import { Post } from 'lib/types';
 
+const ROWS_PER_PAGE = 10;
+
 export const PostsPage = () => {
   const head = {
     cells: [
@@ -157,7 +159,7 @@ export const PostsPage = () => {
       <DynamicTable
         head={head}
         rows={rows}
-        rowsPerPage={10}
+        rowsPerPage={ROWS_PER_PAGE}
         defaultPage={currentPage}
         isFixedSize
         isLoading={isLoading}

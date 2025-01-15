@@ -35,7 +35,7 @@ const AvatarWrapper: FC<{ children: ReactNode }> = ({ children }) => (
   <Box xcss={avatarWrapperStyles}>{children}</Box>
 );
 
-export const Users = () => {
+export const UsersPage = () => {
   const { t } = useTranslation();
 
   const head = {

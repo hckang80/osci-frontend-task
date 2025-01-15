@@ -23,7 +23,7 @@ interface Post {
   createdAt: string;
 }
 
-export const Posts = () => {
+export const PostsPage = () => {
   const { t } = useTranslation();
 
   const head = {

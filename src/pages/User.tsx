@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { InlineEditableTextfield } from '@atlaskit/inline-edit';
+import Spinner from '@atlaskit/spinner';
 import { fetcher } from 'lib/utils';
 import { useQuery } from 'react-query';
 
@@ -48,7 +49,7 @@ export const UserPage = () => {
   return (
     <>
       {!user ? (
-        <div>loading...</div>
+        <Spinner />
       ) : (
         <>
           <div>{`User ID: ${id}`}</div>

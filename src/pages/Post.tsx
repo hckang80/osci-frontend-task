@@ -7,12 +7,16 @@ import { fetcher, toReadableDate } from 'lib/utils';
 import { useQueries } from 'react-query';
 import { Post, User } from 'lib/types';
 
+type CommentType = Omit<Post, 'title'>;
+
 export const PostPage = () => {
   const { id = '' } = useParams();
 
   const fetchPost = () => fetcher<Post>(`/posts/${id}`);
 
   const fetchUserList = () => fetcher<User[]>(`/users`);
+
+  const fetchCommentList = () => fetcher<CommentType[]>(`/comments/post/${id}`);
 
   const result = useQueries([
     {
@@ -22,6 +26,10 @@ export const PostPage = () => {
     {
       queryKey: ['users'],
       queryFn: fetchUserList
+    },
+    {
+      queryKey: ['comments'],
+      queryFn: fetchCommentList
     }
   ]);
 
@@ -34,8 +42,7 @@ export const PostPage = () => {
     setIsLoadingFinished(isLoadingFinished);
   }, [result]);
 
-  const [{ data: post }, { data: users = [] }] = result;
-  console.log({ post, users });
+  const [{ data: post }, { data: users = [] }, { data: comments = [] }] = result;
 
   const getUser = (id: number) => users.find((user) => user.id === id);
   const getUserName = (id: number) => getUser(id)?.name;
@@ -53,26 +60,21 @@ export const PostPage = () => {
             type="author"
             time={<CommentTime>{toReadableDate(post.createdAt)}</CommentTime>}
             content={<p>{post.content}</p>}
-            actions={[
-              <CommentAction>Reply</CommentAction>,
-              <CommentAction>Edit</CommentAction>,
-              <CommentAction>Delete</CommentAction>
-            ]}
+            actions={[<CommentAction>Edit</CommentAction>, <CommentAction>Delete</CommentAction>]}
           >
-            <Comment
-              avatar={<Avatar name="John Smith" />}
-              author={<CommentAuthor>John Smith</CommentAuthor>}
-              time={<CommentTime>Jun 3, 2022</CommentTime>}
-              content={<p>Congratulations!</p>}
-              actions={[<CommentAction>Reply</CommentAction>, <CommentAction>Like</CommentAction>]}
-            ></Comment>
-            <Comment
-              avatar={<Avatar name="Sabina Vu" />}
-              author={<CommentAuthor>Sabina Vu</CommentAuthor>}
-              time={<CommentTime>Jun 4, 2022</CommentTime>}
-              content={<p>I wonder what Atlassian will be like 20 years from now?</p>}
-              actions={[<CommentAction>Reply</CommentAction>, <CommentAction>Like</CommentAction>]}
-            />
+            {comments.map((comment) => (
+              <Comment
+                key={comment.id}
+                avatar={<Avatar name={getUserName(comment.userId)} />}
+                author={<CommentAuthor>{getUserName(comment.userId)}</CommentAuthor>}
+                time={<CommentTime>{toReadableDate(comment.createdAt)}</CommentTime>}
+                content={<p>{comment.content}</p>}
+                actions={[
+                  <CommentAction>Edit</CommentAction>,
+                  <CommentAction>Delete</CommentAction>
+                ]}
+              />
+            ))}
           </Comment>
         </>
       )}

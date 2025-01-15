@@ -51,7 +51,7 @@ export const UsersPage = () => {
       },
       {
         key: 'action',
-        content: 'Action'
+        content: ''
       }
     ]
   };

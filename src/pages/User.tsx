@@ -5,12 +5,7 @@ import Spinner from '@atlaskit/spinner';
 import { fetcher } from 'lib/utils';
 import { useQuery } from 'react-query';
 import { t } from 'i18next';
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
+import { User } from 'lib/types';
 
 export const UserPage = () => {
   const { id = '' } = useParams();

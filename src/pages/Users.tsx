@@ -16,12 +16,7 @@ import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
+import { User } from 'lib/types';
 
 const nameWrapperStyles = css({
   display: 'flex',

@@ -1,42 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '@atlaskit/spinner';
 import Avatar from '@atlaskit/avatar';
 import Comment, { CommentAction, CommentAuthor, CommentTime } from '@atlaskit/comment';
 import { fetcher, toReadableDate } from 'lib/utils';
-import { useQuery } from 'react-query';
-import { Post } from 'lib/types';
+import { useQueries } from 'react-query';
+import { Post, User } from 'lib/types';
 
 export const PostPage = () => {
   const { id = '' } = useParams();
 
   const fetchPost = () => fetcher<Post>(`/posts/${id}`);
 
-  const {
-    isLoading,
-    isError,
-    data: post,
-    error
-  } = useQuery<Post>('users', fetchPost, {
-    refetchOnWindowFocus: false,
-    retry: 0,
-    onSuccess: (data) => {
-      console.log(data);
+  const fetchUserList = () => fetcher<User[]>(`/users`);
+
+  const result = useQueries([
+    {
+      queryKey: ['posts'],
+      queryFn: fetchPost
     },
-    onError: (error) => {
-      console.error(error);
+    {
+      queryKey: ['users'],
+      queryFn: fetchUserList
     }
-  });
+  ]);
 
   const navigate = useNavigate();
 
-  if (isError && error instanceof Error) {
-    return <span>Error: {error.message}</span>;
-  }
+  const [isLoadingFinished, setIsLoadingFinished] = useState(false);
 
+  useEffect(() => {
+    const isLoadingFinished = result.every((result) => !result.isLoading);
+    setIsLoadingFinished(isLoadingFinished);
+  }, [result]);
+
+  const [{ data: post }, { data: users }] = result;
+  console.log({ post, users });
   return (
     <>
-      {isLoading || !post ? (
+      {!isLoadingFinished || !post || !users ? (
         <Spinner />
       ) : (
         <>

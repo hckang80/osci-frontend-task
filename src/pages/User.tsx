@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Form, { Field, FormFooter } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
 import ButtonGroup from '@atlaskit/button/button-group';
@@ -59,6 +59,8 @@ export const UserPage = () => {
     updateUserMutation.mutate(formState);
   };
 
+  const navigate = useNavigate();
+
   if (isError && error instanceof Error) {
     return <span>Error: {error.message}</span>;
   }
@@ -79,7 +81,9 @@ export const UserPage = () => {
               </Field>
               <FormFooter>
                 <ButtonGroup>
-                  <Button appearance="subtle">Cancel</Button>
+                  <Button appearance="subtle" onClick={() => navigate(-1)}>
+                    Cancel
+                  </Button>
                   <Button type="submit" appearance="primary" isLoading={isUpdating}>
                     Edit
                   </Button>

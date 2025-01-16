@@ -22,6 +22,7 @@ function App() {
           {lang}
         </button>
       ))}
+
       <Router
         future={{
           v7_relativeSplatPath: true,

@@ -27,14 +27,7 @@ export const PostsPage = () => {
     isError,
     data: posts = [],
     error
-  } = useQuery<Post[]>('posts', () => fetcher<Post[]>('/posts'), {
-    onSuccess: (data) => {
-      console.log('success', data);
-    },
-    onError: (error) => {
-      console.error(error);
-    }
-  });
+  } = useQuery<Post[]>('posts', () => fetcher<Post[]>('/posts'));
 
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);

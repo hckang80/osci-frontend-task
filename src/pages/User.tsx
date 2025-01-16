@@ -22,14 +22,7 @@ export const UserPage = () => {
     isError,
     data: user,
     error
-  } = useQuery<User>('user', () => fetcher<User>(`/users/${id}`), {
-    onSuccess: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.error(error);
-    }
-  });
+  } = useQuery<User>('user', () => fetcher<User>(`/users/${id}`));
 
   const updateUser = (formState: UserForm) => {
     return fetcher<User>(`/users/${id}`, {
@@ -38,20 +31,7 @@ export const UserPage = () => {
     });
   };
 
-  const updateUserMutation = useMutation(updateUser, {
-    onMutate: (variable) => {
-      console.log('onMutate', variable);
-    },
-    onError: (error, variable, context) => {
-      console.error(error);
-    },
-    onSuccess: (data, variables, context) => {
-      console.log('success', data, variables, context);
-    },
-    onSettled: () => {
-      console.log('end');
-    }
-  });
+  const updateUserMutation = useMutation(updateUser);
 
   const { isLoading: isUpdating } = updateUserMutation;
 

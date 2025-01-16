@@ -18,14 +18,7 @@ export const TodosPage = () => {
     isLoading,
     isError,
     error
-  } = useQuery('todos', () => fetcher<Todo[]>(`/todos/user/${id}`), {
-    onSuccess: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.error(error);
-    }
-  });
+  } = useQuery('todos', () => fetcher<Todo[]>(`/todos/user/${id}`));
 
   if (isError) return <pre>{JSON.stringify(error, null, 2)}</pre>;
 

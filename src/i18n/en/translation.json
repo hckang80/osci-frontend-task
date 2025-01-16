@@ -6,7 +6,10 @@
     "title": "Title",
     "cancel": "Cancel",
     "edit": "Edit",
-    "posted": "Posted on"
+    "posted": "Posted on",
+    "user": "User",
+    "post": "Post",
+    "todo": "Todo"
   },
   "paragraph": {
     "searchByTitle": "Search by title",

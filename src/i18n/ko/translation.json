@@ -6,7 +6,10 @@
     "title": "제목",
     "cancel": "취소",
     "edit": "수정",
-    "posted": "작성일"
+    "posted": "작성일",
+    "user": "사용자",
+    "post": "게시물",
+    "todo": "할일"
   },
   "paragraph": {
     "searchByTitle": "제목으로 검색",

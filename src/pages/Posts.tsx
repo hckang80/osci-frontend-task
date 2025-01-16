@@ -1,9 +1,4 @@
-/**
- * @jsxRuntime classic
- * @jsx jsx
- */
-import React, { Fragment, useMemo, useState } from 'react';
-import { jsx } from '@emotion/react';
+import React, { useMemo, useState } from 'react';
 import { Flex, Stack } from '@atlaskit/primitives';
 import Form, { Field } from '@atlaskit/form';
 import { DatePicker } from '@atlaskit/datetime-picker';
@@ -170,7 +165,7 @@ export const PostsPage = () => {
               <form {...formProps} name="validation-example">
                 <Field name="userName" validate={validate} defaultValue="">
                   {({ fieldProps }) => (
-                    <Fragment>
+                    <>
                       <Textfield
                         list="user-list"
                         placeholder={t('paragraph.searchByTitle')}
@@ -185,7 +180,7 @@ export const PostsPage = () => {
                           ))}
                         </datalist>
                       )}
-                    </Fragment>
+                    </>
                   )}
                 </Field>
               </form>

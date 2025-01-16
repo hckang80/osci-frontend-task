@@ -10,7 +10,7 @@ import Heading from '@atlaskit/heading';
 import Form, { Field } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
 import DynamicTable from '@atlaskit/dynamic-table';
-import SearchIcon from '@atlaskit/icon/core/migration/search';
+import SearchIcon from '@atlaskit/icon/glyph/search';
 import { IconButton } from '@atlaskit/button/new';
 import EditIcon from '@atlaskit/icon/glyph/edit';
 import { useQuery } from 'react-query';

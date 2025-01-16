@@ -6,6 +6,7 @@ import { parseISO } from 'date-fns';
 import Textfield from '@atlaskit/textfield';
 import DynamicTable from '@atlaskit/dynamic-table';
 import SearchIcon from '@atlaskit/icon/glyph/search';
+import EmptyState from '@atlaskit/empty-state';
 import { useQuery } from 'react-query';
 import { fetcher, toReadableDate } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -201,6 +202,8 @@ export const PostsPage = () => {
           isLoading={isLoading}
           onSetPage={(page) => changePage(page)}
         />
+
+        {!isLoading && !rows.length && <EmptyState header="No data" />}
       </Stack>
     </Stack>
   );

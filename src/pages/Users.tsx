@@ -13,6 +13,7 @@ import DynamicTable from '@atlaskit/dynamic-table';
 import SearchIcon from '@atlaskit/icon/glyph/search';
 import { IconButton } from '@atlaskit/button/new';
 import EditIcon from '@atlaskit/icon/glyph/edit';
+import EmptyState from '@atlaskit/empty-state';
 import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -195,6 +196,8 @@ export const UsersPage = () => {
           isLoading={isLoading}
           onSetPage={(page) => changePage(page)}
         />
+
+        {!isLoading && !rows.length && <EmptyState header="No data" />}
       </Stack>
     </Stack>
   );

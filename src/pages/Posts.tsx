@@ -69,6 +69,14 @@ export const PostsPage = () => {
 
   const [fieldValue, setFieldValue] = useState('');
   const [searchedValue, setSearchedValue] = useState('');
+  const [dateRange, setDateRange] = useState({
+    start: '',
+    end: ''
+  });
+  const [searchedDateRange, setSearchedDateRange] = useState({
+    start: '',
+    end: ''
+  });
 
   const autocompleteList = useMemo(() => [...new Set(posts.map(({ title }) => title))], [posts]);
 
@@ -106,15 +114,6 @@ export const PostsPage = () => {
         })),
     [posts, searchedValue]
   );
-
-  const [dateRange, setDateRange] = useState({
-    start: '',
-    end: ''
-  });
-  const [searchedDateRange, setSearchedDateRange] = useState({
-    start: '',
-    end: ''
-  });
 
   if (isError && error instanceof Error) {
     return <span>Error: {error.message}</span>;

@@ -132,6 +132,7 @@ export const PostsPage = () => {
           <DatePicker
             dateFormat="YYYY-MM-DD"
             placeholder="2021-06-10"
+            maxDate={dateRange.end}
             parseInputValue={(date: string) => parseISO(date)}
             clearControlLabel="Clear Custom Date Format"
             shouldShowCalendarButton
@@ -146,6 +147,7 @@ export const PostsPage = () => {
           <DatePicker
             dateFormat="YYYY-MM-DD"
             placeholder="2021-06-10"
+            minDate={dateRange.start}
             parseInputValue={(date: string) => parseISO(date)}
             clearControlLabel="Clear Custom Date Format"
             shouldShowCalendarButton

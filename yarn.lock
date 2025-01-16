@@ -242,7 +242,7 @@
     lodash "^4.17.21"
     tiny-invariant "^1.2.0"
 
-"@atlaskit/heading@^4.0.0":
+"@atlaskit/heading@^4.0.0", "@atlaskit/heading@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@atlaskit/heading/-/heading-4.0.1.tgz#2167113bc1e95e36848690292cb480997d65710a"
   integrity sha512-WCs1RGePH41oSmBNoRm/va6wVOPTpEim0QrZioBsQgf/lPN1tb9FYXQpnBl5F3431Zfx3pXQL85GP30gxHUWMg==

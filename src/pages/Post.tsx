@@ -60,25 +60,32 @@ export const PostPage = () => {
       {!isLoadingFinished || !post || !users ? (
         <Spinner />
       ) : (
-        <Comment
-          avatar={<Avatar name={getUserName(post.userId)} />}
-          author={<CommentAuthor>{getUserName(post.userId)}</CommentAuthor>}
-          type="author"
-          time={<CommentTime>{toReadableDate(post.createdAt, options)}</CommentTime>}
-          content={<p>{post.content}</p>}
-          actions={[<CommentAction>Edit</CommentAction>, <CommentAction>Delete</CommentAction>]}
-        >
-          {comments.map((comment) => (
-            <Comment
-              key={comment.id}
-              avatar={<Avatar name={getUserName(comment.userId)} />}
-              author={<CommentAuthor>{getUserName(comment.userId)}</CommentAuthor>}
-              time={<CommentTime>{toReadableDate(comment.createdAt, options)}</CommentTime>}
-              content={<p>{comment.content}</p>}
-              actions={[<CommentAction>Edit</CommentAction>, <CommentAction>Delete</CommentAction>]}
-            />
-          ))}
-        </Comment>
+        <>
+          <Heading size="small">{`${t('label.title')}: ${post.title}`} </Heading>
+
+          <Comment
+            avatar={<Avatar name={getUserName(post.userId)} />}
+            author={<CommentAuthor>{getUserName(post.userId)}</CommentAuthor>}
+            type="author"
+            time={<CommentTime>{toReadableDate(post.createdAt, options)}</CommentTime>}
+            content={<p>{post.content}</p>}
+            actions={[<CommentAction>Edit</CommentAction>, <CommentAction>Delete</CommentAction>]}
+          >
+            {comments.map((comment) => (
+              <Comment
+                key={comment.id}
+                avatar={<Avatar name={getUserName(comment.userId)} />}
+                author={<CommentAuthor>{getUserName(comment.userId)}</CommentAuthor>}
+                time={<CommentTime>{toReadableDate(comment.createdAt, options)}</CommentTime>}
+                content={<p>{comment.content}</p>}
+                actions={[
+                  <CommentAction>Edit</CommentAction>,
+                  <CommentAction>Delete</CommentAction>
+                ]}
+              />
+            ))}
+          </Comment>
+        </>
       )}
     </Stack>
   );

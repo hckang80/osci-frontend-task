@@ -4,7 +4,6 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { Stack, Flex } from '@atlaskit/primitives';
-import { t } from 'i18next';
 import TaskIcon from '@atlaskit/icon/glyph/task';
 import ImageBorderIcon from '@atlaskit/icon/glyph/image-border';
 import Heading from '@atlaskit/heading';

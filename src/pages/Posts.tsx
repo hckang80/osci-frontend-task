@@ -16,7 +16,6 @@ import { fetcher, toReadableDate } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 import { Post } from 'lib/types';
-import { IconButton } from '@atlaskit/button/new';
 import Heading from '@atlaskit/heading';
 import { useDebounce } from 'hooks/use-debounce';
 
@@ -46,10 +45,6 @@ export const PostsPage = () => {
   const [fieldValue, setFieldValue] = useState('');
   const searchedValue = useDebounce(fieldValue);
   const [dateRange, setDateRange] = useState({
-    start: '',
-    end: ''
-  });
-  const [searchedDateRange, setSearchedDateRange] = useState({
     start: '',
     end: ''
   });
@@ -87,7 +82,7 @@ export const PostsPage = () => {
     () =>
       posts
         .filter((post) => {
-          const { start: searchedStartDate, end: searchedEndDate } = searchedDateRange;
+          const { start: searchedStartDate, end: searchedEndDate } = dateRange;
 
           const validations = {
             title: post.title.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase()),
@@ -115,7 +110,7 @@ export const PostsPage = () => {
             }
           ]
         })),
-    [posts, searchedValue, searchedDateRange]
+    [posts, searchedValue, dateRange]
   );
 
   if (isError) return <pre>{JSON.stringify(error, null, 2)}</pre>;
@@ -166,11 +161,6 @@ export const PostsPage = () => {
                 end: date
               }))
             }
-          />
-          <IconButton
-            icon={SearchIcon}
-            label="Search"
-            onClick={() => setSearchedDateRange(dateRange)}
           />
         </Flex>
 

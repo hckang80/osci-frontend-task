@@ -6,7 +6,7 @@ import React, { Fragment, useMemo, useState } from 'react';
 
 import { jsx } from '@emotion/react';
 
-import Form, { Field, Label } from '@atlaskit/form';
+import Form, { Field } from '@atlaskit/form';
 import { DatePicker } from '@atlaskit/datetime-picker';
 import { parseISO } from 'date-fns';
 import Textfield from '@atlaskit/textfield';
@@ -175,8 +175,6 @@ export const PostsPage = () => {
         label="Search"
         onClick={() => setSearchedDateRange(dateRange)}
       />
-      {JSON.stringify(dateRange)}
-      {JSON.stringify(searchedDateRange)}
 
       <Form onSubmit={handleSubmit}>
         {({ formProps }) => (

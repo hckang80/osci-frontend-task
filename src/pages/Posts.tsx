@@ -94,13 +94,13 @@ export const PostsPage = () => {
         .filter((post) => {
           const { start: searchedStartDate, end: searchedEndDate } = searchedDateRange;
 
-          const isIncludedTitle = post.title
-            .toLocaleLowerCase()
-            .includes(searchedValue.toLocaleLowerCase());
-          const isIncludedStartDate = !searchedStartDate || searchedStartDate <= post.createdAt;
-          const isIncludedEndDate = !searchedEndDate || searchedEndDate >= post.createdAt;
+          const validations = {
+            title: post.title.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase()),
+            startDate: !searchedStartDate || searchedStartDate <= post.createdAt,
+            endDate: !searchedEndDate || searchedEndDate >= post.createdAt
+          };
 
-          return isIncludedTitle && isIncludedStartDate && isIncludedEndDate;
+          return Object.values(validations).every(Boolean);
         })
         .map((post) => ({
           key: post.id + '',

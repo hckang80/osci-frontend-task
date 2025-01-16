@@ -106,6 +106,11 @@ export const PostsPage = () => {
     [posts, searchedValue]
   );
 
+  const [dateRange, setDateRange] = useState({
+    start: '',
+    end: ''
+  });
+
   if (isError && error instanceof Error) {
     return <span>Error: {error.message}</span>;
   }
@@ -125,19 +130,35 @@ export const PostsPage = () => {
 
   return (
     <Fragment>
-      <Label id="custom" htmlFor="datepicker-format">
-        Custom Date Format
-      </Label>
       <DatePicker
         dateFormat="YYYY-MM-DD"
         placeholder="2021-06-10"
         parseInputValue={(date: string) => parseISO(date)}
-        id="datepicker-format"
         clearControlLabel="Clear Custom Date Format"
         shouldShowCalendarButton
-        inputLabelId="custom"
         openCalendarLabel="open calendar"
+        onChange={(date) =>
+          setDateRange((oldValues) => ({
+            ...oldValues,
+            start: date
+          }))
+        }
       />
+      <DatePicker
+        dateFormat="YYYY-MM-DD"
+        placeholder="2021-06-10"
+        parseInputValue={(date: string) => parseISO(date)}
+        clearControlLabel="Clear Custom Date Format"
+        shouldShowCalendarButton
+        openCalendarLabel="open calendar"
+        onChange={(date) =>
+          setDateRange((oldValues) => ({
+            ...oldValues,
+            end: date
+          }))
+        }
+      />
+      {JSON.stringify(dateRange)}
 
       <Form onSubmit={handleSubmit}>
         {({ formProps }) => (

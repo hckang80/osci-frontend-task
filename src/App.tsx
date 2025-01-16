@@ -38,7 +38,7 @@ function App() {
           v7_startTransition: true
         }}
       >
-        <nav>
+        <nav className="global-nav">
           <Flex gap="space.050">
             <Link to="/users">User</Link>
             <Link to="/posts">Post</Link>

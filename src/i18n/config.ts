@@ -15,6 +15,5 @@ export const resources = {
 i18next.use(initReactI18next).init({
   lng: localStorage.getItem('lang') || navigator.language,
   fallbackLng: 'en',
-  debug: true,
   resources
 });

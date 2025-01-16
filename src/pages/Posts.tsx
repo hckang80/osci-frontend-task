@@ -11,12 +11,13 @@ import { DatePicker } from '@atlaskit/datetime-picker';
 import { parseISO } from 'date-fns';
 import Textfield from '@atlaskit/textfield';
 import DynamicTable from '@atlaskit/dynamic-table';
-import SearchIcon from '@atlaskit/icon/core/migration/search';
+import SearchIcon from '@atlaskit/icon/glyph/search';
 import { useQuery } from 'react-query';
 import { fetcher, toReadableDate } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 import { Post } from 'lib/types';
+import { IconButton } from '@atlaskit/button/new';
 
 const ROWS_PER_PAGE = 10;
 
@@ -110,6 +111,10 @@ export const PostsPage = () => {
     start: '',
     end: ''
   });
+  const [searchedDateRange, setSearchedDateRange] = useState({
+    start: '',
+    end: ''
+  });
 
   if (isError && error instanceof Error) {
     return <span>Error: {error.message}</span>;
@@ -158,7 +163,13 @@ export const PostsPage = () => {
           }))
         }
       />
+      <IconButton
+        icon={SearchIcon}
+        label="Search"
+        onClick={() => setSearchedDateRange(dateRange)}
+      />
       {JSON.stringify(dateRange)}
+      {JSON.stringify(searchedDateRange)}
 
       <Form onSubmit={handleSubmit}>
         {({ formProps }) => (

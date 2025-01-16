@@ -4,11 +4,11 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { Stack, Flex } from '@atlaskit/primitives';
-import DynamicTable from '@atlaskit/dynamic-table';
 import { t } from 'i18next';
 import TaskIcon from '@atlaskit/icon/glyph/task';
 import ImageBorderIcon from '@atlaskit/icon/glyph/image-border';
 import Heading from '@atlaskit/heading';
+import Spinner from '@atlaskit/spinner';
 
 export const TodosPage = () => {
   const { id = '' } = useParams();
@@ -22,40 +22,11 @@ export const TodosPage = () => {
 
   if (isError) return <pre>{JSON.stringify(error, null, 2)}</pre>;
 
-  const head = {
-    cells: [
-      {
-        key: 'title',
-        content: t('label.title')
-      },
-      {
-        key: 'done',
-        content: ''
-      }
-    ]
-  };
-
-  const rows = todos.map((todo) => {
-    return {
-      key: todo.id + '',
-      cells: [
-        {
-          key: 'title',
-          content: todo.completed ? <s>{todo.title}</s> : todo.title
-        },
-        {
-          key: 'done',
-          content: todo.completed ? <TaskIcon label="completed" /> : ''
-        }
-      ]
-    };
-  });
+  if (isLoading) return <Spinner />;
 
   return (
     <Stack space="space.300">
       <Heading size="large">{t('label.todo')}</Heading>
-
-      <DynamicTable head={head} rows={rows} isFixedSize isLoading={isLoading} />
 
       <Stack space="space.100">
         {todos.map(({ id, title, completed }) => (

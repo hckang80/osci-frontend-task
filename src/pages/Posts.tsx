@@ -91,9 +91,18 @@ export const PostsPage = () => {
   const rows = useMemo(
     () =>
       posts
-        .filter((post) =>
-          post.title.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase())
-        )
+        .filter((post) => {
+          const { start: searchedStartDate, end: searchedEndDate } = searchedDateRange;
+
+          const isIncludedStartDate = !searchedStartDate || searchedStartDate <= post.createdAt;
+          const isIncludedEndDate = !searchedEndDate || searchedEndDate >= post.createdAt;
+
+          return (
+            post.title.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase()) &&
+            isIncludedStartDate &&
+            isIncludedEndDate
+          );
+        })
         .map((post) => ({
           key: post.id + '',
           isHighlighted: false,
@@ -112,7 +121,7 @@ export const PostsPage = () => {
             }
           ]
         })),
-    [posts, searchedValue]
+    [posts, searchedValue, searchedDateRange]
   );
 
   if (isError && error instanceof Error) {

@@ -42,6 +42,17 @@ export const PostPage = () => {
   const getUser = (id: number) => users.find((user) => user.id === id);
   const getUserName = (id: number) => getUser(id)?.name;
 
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZone: 'UTC',
+    hour12: false
+  };
+
   return (
     <Stack space="space.300">
       <Heading size="large">{t('label.post')}</Heading>
@@ -53,7 +64,7 @@ export const PostPage = () => {
           avatar={<Avatar name={getUserName(post.userId)} />}
           author={<CommentAuthor>{getUserName(post.userId)}</CommentAuthor>}
           type="author"
-          time={<CommentTime>{toReadableDate(post.createdAt)}</CommentTime>}
+          time={<CommentTime>{toReadableDate(post.createdAt, options)}</CommentTime>}
           content={<p>{post.content}</p>}
           actions={[<CommentAction>Edit</CommentAction>, <CommentAction>Delete</CommentAction>]}
         >
@@ -62,7 +73,7 @@ export const PostPage = () => {
               key={comment.id}
               avatar={<Avatar name={getUserName(comment.userId)} />}
               author={<CommentAuthor>{getUserName(comment.userId)}</CommentAuthor>}
-              time={<CommentTime>{toReadableDate(comment.createdAt)}</CommentTime>}
+              time={<CommentTime>{toReadableDate(comment.createdAt, options)}</CommentTime>}
               content={<p>{comment.content}</p>}
               actions={[<CommentAction>Edit</CommentAction>, <CommentAction>Delete</CommentAction>]}
             />

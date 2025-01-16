@@ -6,6 +6,7 @@ import React, { Fragment, useMemo, useState } from 'react';
 
 import { jsx } from '@emotion/react';
 
+import { Flex } from '@atlaskit/primitives';
 import Form, { Field } from '@atlaskit/form';
 import { DatePicker } from '@atlaskit/datetime-picker';
 import { parseISO } from 'date-fns';
@@ -142,66 +143,70 @@ export const PostsPage = () => {
 
   return (
     <Fragment>
-      <DatePicker
-        dateFormat="YYYY-MM-DD"
-        placeholder="2021-06-10"
-        parseInputValue={(date: string) => parseISO(date)}
-        clearControlLabel="Clear Custom Date Format"
-        shouldShowCalendarButton
-        openCalendarLabel="open calendar"
-        onChange={(date) =>
-          setDateRange((oldValues) => ({
-            ...oldValues,
-            start: date
-          }))
-        }
-      />
-      <DatePicker
-        dateFormat="YYYY-MM-DD"
-        placeholder="2021-06-10"
-        parseInputValue={(date: string) => parseISO(date)}
-        clearControlLabel="Clear Custom Date Format"
-        shouldShowCalendarButton
-        openCalendarLabel="open calendar"
-        onChange={(date) =>
-          setDateRange((oldValues) => ({
-            ...oldValues,
-            end: date
-          }))
-        }
-      />
-      <IconButton
-        icon={SearchIcon}
-        label="Search"
-        onClick={() => setSearchedDateRange(dateRange)}
-      />
+      <Flex gap="space.050" justifyContent="end">
+        <DatePicker
+          dateFormat="YYYY-MM-DD"
+          placeholder="2021-06-10"
+          parseInputValue={(date: string) => parseISO(date)}
+          clearControlLabel="Clear Custom Date Format"
+          shouldShowCalendarButton
+          openCalendarLabel="open calendar"
+          onChange={(date) =>
+            setDateRange((oldValues) => ({
+              ...oldValues,
+              start: date
+            }))
+          }
+        />
+        <DatePicker
+          dateFormat="YYYY-MM-DD"
+          placeholder="2021-06-10"
+          parseInputValue={(date: string) => parseISO(date)}
+          clearControlLabel="Clear Custom Date Format"
+          shouldShowCalendarButton
+          openCalendarLabel="open calendar"
+          onChange={(date) =>
+            setDateRange((oldValues) => ({
+              ...oldValues,
+              end: date
+            }))
+          }
+        />
+        <IconButton
+          icon={SearchIcon}
+          label="Search"
+          onClick={() => setSearchedDateRange(dateRange)}
+        />
+      </Flex>
 
-      <Form onSubmit={handleSubmit}>
-        {({ formProps }) => (
-          <form {...formProps} name="validation-example">
-            <Field name="userName" validate={validate} defaultValue="">
-              {({ fieldProps }) => (
-                <Fragment>
-                  <Textfield
-                    list="user-list"
-                    placeholder={t('paragraph.searchByTitle')}
-                    {...fieldProps}
-                    elemBeforeInput={<SearchIcon label="search" />}
-                    onKeyUp={handleKeyUp}
-                  />
-                  {fieldValue && (
-                    <datalist id="user-list">
-                      {filteredAutocompleteList.map((item) => (
-                        <option key={item} value={item} />
-                      ))}
-                    </datalist>
-                  )}
-                </Fragment>
-              )}
-            </Field>
-          </form>
-        )}
-      </Form>
+      <Flex gap="space.050" justifyContent="end">
+        <Form onSubmit={handleSubmit}>
+          {({ formProps }) => (
+            <form {...formProps} name="validation-example">
+              <Field name="userName" validate={validate} defaultValue="">
+                {({ fieldProps }) => (
+                  <Fragment>
+                    <Textfield
+                      list="user-list"
+                      placeholder={t('paragraph.searchByTitle')}
+                      {...fieldProps}
+                      elemBeforeInput={<SearchIcon label="search" />}
+                      onKeyUp={handleKeyUp}
+                    />
+                    {fieldValue && (
+                      <datalist id="user-list">
+                        {filteredAutocompleteList.map((item) => (
+                          <option key={item} value={item} />
+                        ))}
+                      </datalist>
+                    )}
+                  </Fragment>
+                )}
+              </Field>
+            </form>
+          )}
+        </Form>
+      </Flex>
 
       <DynamicTable
         head={head}

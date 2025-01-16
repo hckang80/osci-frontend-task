@@ -8,6 +8,7 @@ import Avatar from '@atlaskit/avatar';
 import { css, jsx } from '@emotion/react';
 import { Box, xcss } from '@atlaskit/primitives';
 
+import { Flex } from '@atlaskit/primitives';
 import Form, { Field } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
 import DynamicTable from '@atlaskit/dynamic-table';
@@ -162,32 +163,34 @@ export const UsersPage = () => {
 
   return (
     <Fragment>
-      <Form onSubmit={handleSubmit}>
-        {({ formProps }) => (
-          <form {...formProps} name="validation-example">
-            <Field name="userName" validate={validate} defaultValue="">
-              {({ fieldProps }) => (
-                <Fragment>
-                  <Textfield
-                    list="data-list"
-                    placeholder={t('paragraph.searchByNameOrEmail')}
-                    {...fieldProps}
-                    elemBeforeInput={<SearchIcon label="search" />}
-                    onKeyUp={handleKeyUp}
-                  />
-                  {fieldValue && (
-                    <datalist id="data-list">
-                      {filteredAutocompleteList.map((item) => (
-                        <option key={item} value={item} />
-                      ))}
-                    </datalist>
-                  )}
-                </Fragment>
-              )}
-            </Field>
-          </form>
-        )}
-      </Form>
+      <Flex justifyContent="end">
+        <Form onSubmit={handleSubmit}>
+          {({ formProps }) => (
+            <form {...formProps} name="validation-example">
+              <Field name="userName" validate={validate} defaultValue="">
+                {({ fieldProps }) => (
+                  <Fragment>
+                    <Textfield
+                      list="data-list"
+                      placeholder={t('paragraph.searchByNameOrEmail')}
+                      {...fieldProps}
+                      elemBeforeInput={<SearchIcon label="search" />}
+                      onKeyUp={handleKeyUp}
+                    />
+                    {fieldValue && (
+                      <datalist id="data-list">
+                        {filteredAutocompleteList.map((item) => (
+                          <option key={item} value={item} />
+                        ))}
+                      </datalist>
+                    )}
+                  </Fragment>
+                )}
+              </Field>
+            </form>
+          )}
+        </Form>
+      </Flex>
 
       <DynamicTable
         head={head}

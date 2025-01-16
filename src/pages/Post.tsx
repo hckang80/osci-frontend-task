@@ -12,7 +12,7 @@ import { t } from 'i18next';
 
 type CommentType = Omit<Post, 'title'>;
 
-export const PostPage = () => {
+export const PostPage = ({ title }: { title: string }) => {
   const { id = '' } = useParams();
 
   const result = useQueries([
@@ -55,7 +55,7 @@ export const PostPage = () => {
 
   return (
     <Stack space="space.300">
-      <Heading size="large">{t('label.post')}</Heading>
+      <Heading size="large">{title}</Heading>
 
       {!isLoadingFinished || !post || !users ? (
         <Spinner />

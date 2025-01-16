@@ -14,7 +14,7 @@ import { Stack } from '@atlaskit/primitives';
 
 type UserForm = Omit<User, 'id'>;
 
-export const UserPage = () => {
+export const UserPage = ({ title }: { title: string }) => {
   const { id = '' } = useParams();
 
   const {
@@ -54,7 +54,7 @@ export const UserPage = () => {
 
   return (
     <Stack space="space.300">
-      <Heading size="large">{t('label.user')}</Heading>
+      <Heading size="large">{title}</Heading>
 
       {isLoading || !user ? (
         <Spinner />

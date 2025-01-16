@@ -38,7 +38,7 @@ const AvatarWrapper: FC<{ children: ReactNode }> = ({ children }) => (
   <Box xcss={avatarWrapperStyles}>{children}</Box>
 );
 
-export const UsersPage = () => {
+export const UsersPage = ({ title }: { title: string }) => {
   const {
     isLoading,
     isError,
@@ -153,13 +153,13 @@ export const UsersPage = () => {
 
   return (
     <Stack space="space.300">
-      <Heading size="large">{t('label.user')}</Heading>
+      <Heading size="large">{title}</Heading>
 
       <Stack>
         <Flex justifyContent="end">
           <Form onSubmit={handleSubmit}>
             {({ formProps }) => (
-              <form {...formProps} name="validation-example">
+              <form {...formProps}>
                 <Field name="userName" validate={validate} defaultValue="">
                   {({ fieldProps }) => (
                     <Stack>

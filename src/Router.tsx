@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Link, useLocation } from 'react-router-dom';
 import { UsersPage, UserPage, PostsPage, PostPage, TodosPage } from './pages';
 import { Flex } from '@atlaskit/primitives';
+import { t } from 'i18next';
 
 export default function Router() {
   return (
@@ -15,11 +16,11 @@ export default function Router() {
 
       <Routes>
         <Route path="/" element={<Navigate to="/users" replace />}></Route>
-        <Route path="/users" element={<UsersPage />}></Route>
-        <Route path="/users/:id" element={<UserPage />}></Route>
-        <Route path="/posts" element={<PostsPage />}></Route>
-        <Route path="/posts/:id" element={<PostPage />}></Route>
-        <Route path="/todos/:id" element={<TodosPage />}></Route>
+        <Route path="/users" element={<UsersPage title={t('label.user')} />}></Route>
+        <Route path="/users/:id" element={<UserPage title={t('label.user')} />}></Route>
+        <Route path="/posts" element={<PostsPage title={t('label.post')} />}></Route>
+        <Route path="/posts/:id" element={<PostPage title={t('label.post')} />}></Route>
+        <Route path="/todos/:id" element={<TodosPage title={t('label.todo')} />}></Route>
       </Routes>
     </BrowserRouter>
   );

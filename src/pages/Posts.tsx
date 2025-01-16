@@ -17,7 +17,7 @@ import { useDebounce } from 'hooks/use-debounce';
 
 const ROWS_PER_PAGE = 10;
 
-export const PostsPage = () => {
+export const PostsPage = ({ title }: { title: string }) => {
   const {
     isLoading,
     isError,
@@ -126,7 +126,7 @@ export const PostsPage = () => {
 
   return (
     <Stack space="space.300">
-      <Heading size="large">{t('label.post')}</Heading>
+      <Heading size="large">{title}</Heading>
 
       <Stack>
         <Flex gap="space.050" justifyContent="end">
@@ -165,7 +165,7 @@ export const PostsPage = () => {
         <Flex gap="space.050" justifyContent="end">
           <Form onSubmit={handleSubmit}>
             {({ formProps }) => (
-              <form {...formProps} name="validation-example">
+              <form {...formProps}>
                 <Field name="userName" validate={validate} defaultValue="">
                   {({ fieldProps }) => (
                     <>

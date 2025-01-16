@@ -10,7 +10,7 @@ import ImageBorderIcon from '@atlaskit/icon/glyph/image-border';
 import Heading from '@atlaskit/heading';
 import Spinner from '@atlaskit/spinner';
 
-export const TodosPage = () => {
+export const TodosPage = ({ title }: { title: string }) => {
   const { id = '' } = useParams();
 
   const {
@@ -24,7 +24,7 @@ export const TodosPage = () => {
 
   return (
     <Stack space="space.300">
-      <Heading size="large">{t('label.todo')}</Heading>
+      <Heading size="large">{title}</Heading>
 
       <Heading size="small">{`User ID: ${id}`} </Heading>
 

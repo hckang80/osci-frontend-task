@@ -2,7 +2,7 @@
  * @jsxRuntime classic
  * @jsx jsx
  */
-import React, { FC, Fragment, ReactNode, useMemo, useState } from 'react';
+import React, { FC, ReactNode, useMemo, useState } from 'react';
 import Avatar from '@atlaskit/avatar';
 import { css, jsx } from '@emotion/react';
 import { Box, xcss, Flex, Stack } from '@atlaskit/primitives';
@@ -161,7 +161,7 @@ export const UsersPage = () => {
               <form {...formProps} name="validation-example">
                 <Field name="userName" validate={validate} defaultValue="">
                   {({ fieldProps }) => (
-                    <Fragment>
+                    <Stack>
                       <Textfield
                         list="data-list"
                         placeholder={t('paragraph.searchByNameOrEmail')}
@@ -176,7 +176,7 @@ export const UsersPage = () => {
                           ))}
                         </datalist>
                       )}
-                    </Fragment>
+                    </Stack>
                   )}
                 </Field>
               </form>

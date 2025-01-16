@@ -9,6 +9,8 @@ import { fetcher } from 'lib/utils';
 import { useMutation, useQuery } from 'react-query';
 import { t } from 'i18next';
 import { User } from 'lib/types';
+import Heading from '@atlaskit/heading';
+import { Stack } from '@atlaskit/primitives';
 
 type UserForm = Omit<User, 'id'>;
 
@@ -77,33 +79,37 @@ export const UserPage = () => {
       {isLoading || !user ? (
         <Spinner />
       ) : (
-        <Form onSubmit={handleSubmit}>
-          {({ formProps }) => (
-            <form {...formProps}>
-              <Field name="name" label={t('label.name')} defaultValue={user.name} isRequired>
-                {({ fieldProps }) => <Textfield {...fieldProps} isReadOnly={isUpdating} />}
-              </Field>
-              <Field name="email" label={t('label.email')} defaultValue={user.email} isRequired>
-                {({ fieldProps, error }) => (
-                  <>
-                    <Textfield {...fieldProps} isReadOnly={isUpdating} />
-                    {error && <ErrorMessage>{error}</ErrorMessage>}
-                  </>
-                )}
-              </Field>
-              <FormFooter>
-                <ButtonGroup>
-                  <Button appearance="subtle" onClick={() => navigate(-1)}>
-                    {t('label.cancel')}
-                  </Button>
-                  <Button type="submit" appearance="primary" isLoading={isUpdating}>
-                    {t('label.edit')}
-                  </Button>
-                </ButtonGroup>
-              </FormFooter>
-            </form>
-          )}
-        </Form>
+        <Stack space="space.300">
+          <Heading size="large">{t('label.user')}</Heading>
+
+          <Form onSubmit={handleSubmit}>
+            {({ formProps }) => (
+              <form {...formProps}>
+                <Field name="name" label={t('label.name')} defaultValue={user.name} isRequired>
+                  {({ fieldProps }) => <Textfield {...fieldProps} isReadOnly={isUpdating} />}
+                </Field>
+                <Field name="email" label={t('label.email')} defaultValue={user.email} isRequired>
+                  {({ fieldProps, error }) => (
+                    <>
+                      <Textfield {...fieldProps} isReadOnly={isUpdating} />
+                      {error && <ErrorMessage>{error}</ErrorMessage>}
+                    </>
+                  )}
+                </Field>
+                <FormFooter>
+                  <ButtonGroup>
+                    <Button appearance="subtle" onClick={() => navigate(-1)}>
+                      {t('label.cancel')}
+                    </Button>
+                    <Button type="submit" appearance="primary" isLoading={isUpdating}>
+                      {t('label.edit')}
+                    </Button>
+                  </ButtonGroup>
+                </FormFooter>
+              </form>
+            )}
+          </Form>
+        </Stack>
       )}
     </>
   );

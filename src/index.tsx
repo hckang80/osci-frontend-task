@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { Box } from '@atlaskit/primitives';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,7 +20,9 @@ const rootElement = document.getElementById('root');
 render(
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools initialIsOpen={true} />
-    <App />
+    <Box padding="space.200">
+      <App />
+    </Box>
   </QueryClientProvider>,
   rootElement
 );

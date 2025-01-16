@@ -70,47 +70,43 @@ export const UserPage = () => {
 
   const navigate = useNavigate();
 
-  if (isError && error instanceof Error) {
-    return <span>Error: {error.message}</span>;
-  }
+  if (isError) return <pre>{JSON.stringify(error, null, 2)}</pre>;
 
   return (
-    <>
+    <Stack space="space.300">
+      <Heading size="large">{t('label.user')}</Heading>
+
       {isLoading || !user ? (
         <Spinner />
       ) : (
-        <Stack space="space.300">
-          <Heading size="large">{t('label.user')}</Heading>
-
-          <Form onSubmit={handleSubmit}>
-            {({ formProps }) => (
-              <form {...formProps}>
-                <Field name="name" label={t('label.name')} defaultValue={user.name} isRequired>
-                  {({ fieldProps }) => <Textfield {...fieldProps} isReadOnly={isUpdating} />}
-                </Field>
-                <Field name="email" label={t('label.email')} defaultValue={user.email} isRequired>
-                  {({ fieldProps, error }) => (
-                    <>
-                      <Textfield {...fieldProps} isReadOnly={isUpdating} />
-                      {error && <ErrorMessage>{error}</ErrorMessage>}
-                    </>
-                  )}
-                </Field>
-                <FormFooter>
-                  <ButtonGroup>
-                    <Button appearance="subtle" onClick={() => navigate(-1)}>
-                      {t('label.cancel')}
-                    </Button>
-                    <Button type="submit" appearance="primary" isLoading={isUpdating}>
-                      {t('label.edit')}
-                    </Button>
-                  </ButtonGroup>
-                </FormFooter>
-              </form>
-            )}
-          </Form>
-        </Stack>
+        <Form onSubmit={handleSubmit}>
+          {({ formProps }) => (
+            <form {...formProps}>
+              <Field name="name" label={t('label.name')} defaultValue={user.name} isRequired>
+                {({ fieldProps }) => <Textfield {...fieldProps} isReadOnly={isUpdating} />}
+              </Field>
+              <Field name="email" label={t('label.email')} defaultValue={user.email} isRequired>
+                {({ fieldProps, error }) => (
+                  <>
+                    <Textfield {...fieldProps} isReadOnly={isUpdating} />
+                    {error && <ErrorMessage>{error}</ErrorMessage>}
+                  </>
+                )}
+              </Field>
+              <FormFooter>
+                <ButtonGroup>
+                  <Button appearance="subtle" onClick={() => navigate(-1)}>
+                    {t('label.cancel')}
+                  </Button>
+                  <Button type="submit" appearance="primary" isLoading={isUpdating}>
+                    {t('label.edit')}
+                  </Button>
+                </ButtonGroup>
+              </FormFooter>
+            </form>
+          )}
+        </Form>
       )}
-    </>
+    </Stack>
   );
 };

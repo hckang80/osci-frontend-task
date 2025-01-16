@@ -43,37 +43,32 @@ export const PostPage = () => {
   const getUserName = (id: number) => getUser(id)?.name;
 
   return (
-    <>
+    <Stack space="space.300">
+      <Heading size="large">{t('label.post')}</Heading>
+
       {!isLoadingFinished || !post || !users ? (
         <Spinner />
       ) : (
-        <Stack space="space.300">
-          <Heading size="large">{t('label.post')}</Heading>
-
-          <Comment
-            avatar={<Avatar name={getUserName(post.userId)} />}
-            author={<CommentAuthor>{getUserName(post.userId)}</CommentAuthor>}
-            type="author"
-            time={<CommentTime>{toReadableDate(post.createdAt)}</CommentTime>}
-            content={<p>{post.content}</p>}
-            actions={[<CommentAction>Edit</CommentAction>, <CommentAction>Delete</CommentAction>]}
-          >
-            {comments.map((comment) => (
-              <Comment
-                key={comment.id}
-                avatar={<Avatar name={getUserName(comment.userId)} />}
-                author={<CommentAuthor>{getUserName(comment.userId)}</CommentAuthor>}
-                time={<CommentTime>{toReadableDate(comment.createdAt)}</CommentTime>}
-                content={<p>{comment.content}</p>}
-                actions={[
-                  <CommentAction>Edit</CommentAction>,
-                  <CommentAction>Delete</CommentAction>
-                ]}
-              />
-            ))}
-          </Comment>
-        </Stack>
+        <Comment
+          avatar={<Avatar name={getUserName(post.userId)} />}
+          author={<CommentAuthor>{getUserName(post.userId)}</CommentAuthor>}
+          type="author"
+          time={<CommentTime>{toReadableDate(post.createdAt)}</CommentTime>}
+          content={<p>{post.content}</p>}
+          actions={[<CommentAction>Edit</CommentAction>, <CommentAction>Delete</CommentAction>]}
+        >
+          {comments.map((comment) => (
+            <Comment
+              key={comment.id}
+              avatar={<Avatar name={getUserName(comment.userId)} />}
+              author={<CommentAuthor>{getUserName(comment.userId)}</CommentAuthor>}
+              time={<CommentTime>{toReadableDate(comment.createdAt)}</CommentTime>}
+              content={<p>{comment.content}</p>}
+              actions={[<CommentAction>Edit</CommentAction>, <CommentAction>Delete</CommentAction>]}
+            />
+          ))}
+        </Comment>
       )}
-    </>
+    </Stack>
   );
 };

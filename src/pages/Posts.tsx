@@ -124,9 +124,7 @@ export const PostsPage = () => {
     [posts, searchedValue, searchedDateRange]
   );
 
-  if (isError && error instanceof Error) {
-    return <span>Error: {error.message}</span>;
-  }
+  if (isError) return <pre>{JSON.stringify(error, null, 2)}</pre>;
 
   const validate = (value = '') => {
     setFieldValue(value);

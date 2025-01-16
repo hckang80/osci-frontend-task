@@ -29,8 +29,6 @@ export const TodosPage = () => {
 
   if (isError) return <pre>{JSON.stringify(error, null, 2)}</pre>;
 
-  if (isLoading) return <Spinner />;
-
   const head = {
     cells: [
       {

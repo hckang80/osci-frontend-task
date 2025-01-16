@@ -143,9 +143,7 @@ export const UsersPage = () => {
     [users, searchedValue]
   );
 
-  if ((isError || !data) && error instanceof Error) {
-    return <span>Error: {error.message}</span>;
-  }
+  if (isError) return <pre>{JSON.stringify(error, null, 2)}</pre>;
 
   const validate = (value = '') => {
     setFieldValue(value);

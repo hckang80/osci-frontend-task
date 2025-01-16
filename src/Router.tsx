@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
+import React, { useLayoutEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, Link, useLocation } from 'react-router-dom';
 import { UsersPage, UserPage, PostsPage, PostPage, TodosPage } from './pages';
 import { Flex } from '@atlaskit/primitives';
 
@@ -11,12 +11,7 @@ export default function Router() {
         v7_startTransition: true
       }}
     >
-      <nav className="global-nav">
-        <Flex gap="space.050">
-          <Link to="/users">User</Link>
-          <Link to="/posts">Post</Link>
-        </Flex>
-      </nav>
+      <Nav />
 
       <Routes>
         <Route path="/" element={<Navigate to="/users" replace />}></Route>
@@ -27,5 +22,21 @@ export default function Router() {
         <Route path="/todos/:id" element={<TodosPage />}></Route>
       </Routes>
     </BrowserRouter>
+  );
+}
+
+export function Nav() {
+  const { pathname } = useLocation();
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return (
+    <nav className="global-nav">
+      <Flex gap="space.050">
+        <Link to="/users">User</Link>
+        <Link to="/posts">Post</Link>
+      </Flex>
+    </nav>
   );
 }

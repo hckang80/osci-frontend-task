@@ -131,7 +131,7 @@ export const PostsPage = () => {
         <Flex gap="space.050" justifyContent="end">
           <DatePicker
             dateFormat="YYYY-MM-DD"
-            placeholder="2021-06-10"
+            placeholder="Start day"
             maxDate={dateRange.end}
             parseInputValue={(date: string) => parseISO(date)}
             clearControlLabel="Clear Custom Date Format"
@@ -146,7 +146,7 @@ export const PostsPage = () => {
           />
           <DatePicker
             dateFormat="YYYY-MM-DD"
-            placeholder="2021-06-10"
+            placeholder="End day"
             minDate={dateRange.start}
             parseInputValue={(date: string) => parseISO(date)}
             clearControlLabel="Clear Custom Date Format"

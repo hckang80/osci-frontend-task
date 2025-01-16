@@ -3,10 +3,11 @@ import { fetcher } from 'lib/utils';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import { Stack } from '@atlaskit/primitives';
+import { Stack, Flex } from '@atlaskit/primitives';
 import DynamicTable from '@atlaskit/dynamic-table';
 import { t } from 'i18next';
 import TaskIcon from '@atlaskit/icon/glyph/task';
+import ImageBorderIcon from '@atlaskit/icon/glyph/image-border';
 import Heading from '@atlaskit/heading';
 
 export const TodosPage = () => {
@@ -55,6 +56,15 @@ export const TodosPage = () => {
       <Heading size="large">{t('label.todo')}</Heading>
 
       <DynamicTable head={head} rows={rows} isFixedSize isLoading={isLoading} />
+
+      <Stack space="space.100">
+        {todos.map(({ id, title, completed }) => (
+          <Flex key={id} alignItems="center" gap="space.050">
+            {completed ? <TaskIcon label="completed" /> : <ImageBorderIcon label="incomplete" />}
+            {title}
+          </Flex>
+        ))}
+      </Stack>
     </Stack>
   );
 };

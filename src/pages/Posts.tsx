@@ -18,6 +18,7 @@ import { t } from 'i18next';
 import { Post } from 'lib/types';
 import { IconButton } from '@atlaskit/button/new';
 import Heading from '@atlaskit/heading';
+import { useDebounce } from 'hooks/use-debounce';
 
 const ROWS_PER_PAGE = 10;
 
@@ -43,7 +44,7 @@ export const PostsPage = () => {
   };
 
   const [fieldValue, setFieldValue] = useState('');
-  const [searchedValue, setSearchedValue] = useState('');
+  const searchedValue = useDebounce(fieldValue);
   const [dateRange, setDateRange] = useState({
     start: '',
     end: ''
@@ -124,7 +125,7 @@ export const PostsPage = () => {
   };
 
   const handleSubmit = (formState: { userName: string }) => {
-    setSearchedValue(formState.userName);
+    console.log('handleSubmit', formState);
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {

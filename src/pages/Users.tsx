@@ -18,6 +18,7 @@ import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { User } from 'lib/types';
 import { t } from 'i18next';
+import { useDebounce } from 'hooks/use-debounce';
 
 const nameWrapperStyles = css({
   display: 'flex',
@@ -58,7 +59,7 @@ export const UsersPage = () => {
   };
 
   const [fieldValue, setFieldValue] = useState('');
-  const [searchedValue, setSearchedValue] = useState('');
+  const searchedValue = useDebounce(fieldValue);
 
   const autocompleteList = useMemo(
     () => [...new Set([...users.map(({ name }) => name), ...users.map(({ email }) => email)])],
@@ -141,7 +142,7 @@ export const UsersPage = () => {
   };
 
   const handleSubmit = (formState: { userName: string }) => {
-    setSearchedValue(formState.userName);
+    console.log('handleSubmit', formState);
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {

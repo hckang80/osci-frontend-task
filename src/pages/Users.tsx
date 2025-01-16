@@ -133,7 +133,7 @@ export const UsersPage = () => {
             }
           ]
         })),
-    [users, searchedValue]
+    [users, searchedValue, navigate]
   );
 
   if (isError) return <pre>{JSON.stringify(error, null, 2)}</pre>;

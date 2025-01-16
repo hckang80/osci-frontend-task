@@ -28,6 +28,8 @@ export const TodosPage = () => {
     <Stack space="space.300">
       <Heading size="large">{t('label.todo')}</Heading>
 
+      <Heading size="small">{`User ID: ${id}`} </Heading>
+
       <Stack space="space.100">
         {todos.map(({ id, title, completed }) => (
           <Flex key={id} alignItems="center" gap="space.050">

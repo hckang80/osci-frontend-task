@@ -10,6 +10,7 @@
     "@atlaskit/dropdown-menu": "^12.24.1",
     "@atlaskit/dynamic-table": "^17.0.2",
     "@atlaskit/form": "^11.0.1",
+    "@atlaskit/heading": "^4.0.1",
     "@atlaskit/inline-edit": "^14.1.0",
     "@atlaskit/link": "^2.0.1",
     "@atlaskit/spinner": "^16.3.5",

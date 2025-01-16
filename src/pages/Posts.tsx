@@ -3,9 +3,8 @@
  * @jsx jsx
  */
 import React, { Fragment, useMemo, useState } from 'react';
-
 import { jsx } from '@emotion/react';
-
+import { Flex, Stack } from '@atlaskit/primitives';
 import Form, { Field } from '@atlaskit/form';
 import { DatePicker } from '@atlaskit/datetime-picker';
 import { parseISO } from 'date-fns';
@@ -18,28 +17,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 import { Post } from 'lib/types';
 import { IconButton } from '@atlaskit/button/new';
+import Heading from '@atlaskit/heading';
 
 const ROWS_PER_PAGE = 10;
 
 export const PostsPage = () => {
-  const head = {
-    cells: [
-      {
-        key: 'id',
-        content: t('label.number'),
-        width: 4
-      },
-      {
-        key: 'title',
-        content: t('label.title')
-      },
-      {
-        key: 'createdAt',
-        content: t('label.posted')
-      }
-    ]
-  };
-
   const {
     isLoading,
     isError,
@@ -87,6 +69,25 @@ export const PostsPage = () => {
       ),
     [autocompleteList, fieldValue]
   );
+
+  const head = {
+    cells: [
+      {
+        key: 'id',
+        content: t('label.number'),
+        width: 10
+      },
+      {
+        key: 'title',
+        content: t('label.title')
+      },
+      {
+        key: 'createdAt',
+        content: t('label.posted'),
+        width: 25
+      }
+    ]
+  };
 
   const rows = useMemo(
     () =>
@@ -141,77 +142,87 @@ export const PostsPage = () => {
   };
 
   return (
-    <Fragment>
-      <DatePicker
-        dateFormat="YYYY-MM-DD"
-        placeholder="2021-06-10"
-        parseInputValue={(date: string) => parseISO(date)}
-        clearControlLabel="Clear Custom Date Format"
-        shouldShowCalendarButton
-        openCalendarLabel="open calendar"
-        onChange={(date) =>
-          setDateRange((oldValues) => ({
-            ...oldValues,
-            start: date
-          }))
-        }
-      />
-      <DatePicker
-        dateFormat="YYYY-MM-DD"
-        placeholder="2021-06-10"
-        parseInputValue={(date: string) => parseISO(date)}
-        clearControlLabel="Clear Custom Date Format"
-        shouldShowCalendarButton
-        openCalendarLabel="open calendar"
-        onChange={(date) =>
-          setDateRange((oldValues) => ({
-            ...oldValues,
-            end: date
-          }))
-        }
-      />
-      <IconButton
-        icon={SearchIcon}
-        label="Search"
-        onClick={() => setSearchedDateRange(dateRange)}
-      />
+    <Stack space="space.300">
+      <Heading size="large">{t('label.post')}</Heading>
 
-      <Form onSubmit={handleSubmit}>
-        {({ formProps }) => (
-          <form {...formProps} name="validation-example">
-            <Field name="userName" validate={validate} defaultValue="">
-              {({ fieldProps }) => (
-                <Fragment>
-                  <Textfield
-                    list="user-list"
-                    placeholder={t('paragraph.searchByTitle')}
-                    {...fieldProps}
-                    elemBeforeInput={<SearchIcon label="search" />}
-                    onKeyUp={handleKeyUp}
-                  />
-                  {fieldValue && (
-                    <datalist id="user-list">
-                      {filteredAutocompleteList.map((item) => (
-                        <option key={item} value={item} />
-                      ))}
-                    </datalist>
+      <Stack>
+        <Flex gap="space.050" justifyContent="end">
+          <DatePicker
+            dateFormat="YYYY-MM-DD"
+            placeholder="2021-06-10"
+            parseInputValue={(date: string) => parseISO(date)}
+            clearControlLabel="Clear Custom Date Format"
+            shouldShowCalendarButton
+            openCalendarLabel="open calendar"
+            onChange={(date) =>
+              setDateRange((oldValues) => ({
+                ...oldValues,
+                start: date
+              }))
+            }
+          />
+          <DatePicker
+            dateFormat="YYYY-MM-DD"
+            placeholder="2021-06-10"
+            parseInputValue={(date: string) => parseISO(date)}
+            clearControlLabel="Clear Custom Date Format"
+            shouldShowCalendarButton
+            openCalendarLabel="open calendar"
+            onChange={(date) =>
+              setDateRange((oldValues) => ({
+                ...oldValues,
+                end: date
+              }))
+            }
+          />
+          <IconButton
+            icon={SearchIcon}
+            label="Search"
+            onClick={() => setSearchedDateRange(dateRange)}
+          />
+        </Flex>
+
+        <Flex gap="space.050" justifyContent="end">
+          <Form onSubmit={handleSubmit}>
+            {({ formProps }) => (
+              <form {...formProps} name="validation-example">
+                <Field name="userName" validate={validate} defaultValue="">
+                  {({ fieldProps }) => (
+                    <Fragment>
+                      <Textfield
+                        list="user-list"
+                        placeholder={t('paragraph.searchByTitle')}
+                        {...fieldProps}
+                        elemBeforeInput={<SearchIcon label="search" />}
+                        onKeyUp={handleKeyUp}
+                      />
+                      {fieldValue && (
+                        <datalist id="user-list">
+                          {filteredAutocompleteList.map((item) => (
+                            <option key={item} value={item} />
+                          ))}
+                        </datalist>
+                      )}
+                    </Fragment>
                   )}
-                </Fragment>
-              )}
-            </Field>
-          </form>
-        )}
-      </Form>
+                </Field>
+              </form>
+            )}
+          </Form>
+        </Flex>
+      </Stack>
 
-      <DynamicTable
-        head={head}
-        rows={rows}
-        rowsPerPage={ROWS_PER_PAGE}
-        defaultPage={currentPage}
-        isFixedSize
-        isLoading={isLoading}
-        onSetPage={(page) => changePage(page)}
-      />
-    </Fragment>
+      <Stack>
+        <DynamicTable
+          head={head}
+          rows={rows}
+          rowsPerPage={ROWS_PER_PAGE}
+          defaultPage={currentPage}
+          isFixedSize
+          isLoading={isLoading}
+          onSetPage={(page) => changePage(page)}
+        />
+      </Stack>
+    </Stack>
   );
 };

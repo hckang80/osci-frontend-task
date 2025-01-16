@@ -4,10 +4,9 @@
  */
 import React, { FC, Fragment, ReactNode, useMemo, useState } from 'react';
 import Avatar from '@atlaskit/avatar';
-
 import { css, jsx } from '@emotion/react';
-import { Box, xcss } from '@atlaskit/primitives';
-
+import { Box, xcss, Flex, Stack } from '@atlaskit/primitives';
+import Heading from '@atlaskit/heading';
 import Form, { Field } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
 import DynamicTable from '@atlaskit/dynamic-table';
@@ -38,24 +37,6 @@ const AvatarWrapper: FC<{ children: ReactNode }> = ({ children }) => (
 );
 
 export const UsersPage = () => {
-  const head = {
-    cells: [
-      {
-        key: 'name',
-        content: t('label.name'),
-        width: 25
-      },
-      {
-        key: 'email',
-        content: t('label.email')
-      },
-      {
-        key: 'action',
-        content: ''
-      }
-    ]
-  };
-
   const [users, setUsers] = useState<User[]>([]);
 
   const { isLoading, isError, data, error } = useQuery<User[]>(
@@ -100,6 +81,25 @@ export const UsersPage = () => {
       ),
     [autocompleteList, fieldValue]
   );
+
+  const head = {
+    cells: [
+      {
+        key: 'name',
+        content: t('label.name'),
+        width: 25
+      },
+      {
+        key: 'email',
+        content: t('label.email')
+      },
+      {
+        key: 'action',
+        content: '',
+        width: 10
+      }
+    ]
+  };
 
   const rows = useMemo(
     () =>
@@ -161,43 +161,51 @@ export const UsersPage = () => {
   };
 
   return (
-    <Fragment>
-      <Form onSubmit={handleSubmit}>
-        {({ formProps }) => (
-          <form {...formProps} name="validation-example">
-            <Field name="userName" validate={validate} defaultValue="">
-              {({ fieldProps }) => (
-                <Fragment>
-                  <Textfield
-                    list="data-list"
-                    placeholder={t('paragraph.searchByNameOrEmail')}
-                    {...fieldProps}
-                    elemBeforeInput={<SearchIcon label="search" />}
-                    onKeyUp={handleKeyUp}
-                  />
-                  {fieldValue && (
-                    <datalist id="data-list">
-                      {filteredAutocompleteList.map((item) => (
-                        <option key={item} value={item} />
-                      ))}
-                    </datalist>
-                  )}
-                </Fragment>
-              )}
-            </Field>
-          </form>
-        )}
-      </Form>
+    <Stack space="space.300">
+      <Heading size="large">{t('label.user')}</Heading>
 
-      <DynamicTable
-        head={head}
-        rows={rows}
-        rowsPerPage={5}
-        defaultPage={currentPage}
-        isFixedSize
-        isLoading={isLoading}
-        onSetPage={(page) => changePage(page)}
-      />
-    </Fragment>
+      <Stack>
+        <Flex justifyContent="end">
+          <Form onSubmit={handleSubmit}>
+            {({ formProps }) => (
+              <form {...formProps} name="validation-example">
+                <Field name="userName" validate={validate} defaultValue="">
+                  {({ fieldProps }) => (
+                    <Fragment>
+                      <Textfield
+                        list="data-list"
+                        placeholder={t('paragraph.searchByNameOrEmail')}
+                        {...fieldProps}
+                        elemBeforeInput={<SearchIcon label="search" />}
+                        onKeyUp={handleKeyUp}
+                      />
+                      {fieldValue && (
+                        <datalist id="data-list">
+                          {filteredAutocompleteList.map((item) => (
+                            <option key={item} value={item} />
+                          ))}
+                        </datalist>
+                      )}
+                    </Fragment>
+                  )}
+                </Field>
+              </form>
+            )}
+          </Form>
+        </Flex>
+      </Stack>
+
+      <Stack>
+        <DynamicTable
+          head={head}
+          rows={rows}
+          rowsPerPage={5}
+          defaultPage={currentPage}
+          isFixedSize
+          isLoading={isLoading}
+          onSetPage={(page) => changePage(page)}
+        />
+      </Stack>
+    </Stack>
   );
 };

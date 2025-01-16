@@ -22,24 +22,6 @@ import Heading from '@atlaskit/heading';
 const ROWS_PER_PAGE = 10;
 
 export const PostsPage = () => {
-  const head = {
-    cells: [
-      {
-        key: 'id',
-        content: t('label.number'),
-        width: 4
-      },
-      {
-        key: 'title',
-        content: t('label.title')
-      },
-      {
-        key: 'createdAt',
-        content: t('label.posted')
-      }
-    ]
-  };
-
   const {
     isLoading,
     isError,
@@ -87,6 +69,25 @@ export const PostsPage = () => {
       ),
     [autocompleteList, fieldValue]
   );
+
+  const head = {
+    cells: [
+      {
+        key: 'id',
+        content: t('label.number'),
+        width: 10
+      },
+      {
+        key: 'title',
+        content: t('label.title')
+      },
+      {
+        key: 'createdAt',
+        content: t('label.posted'),
+        width: 25
+      }
+    ]
+  };
 
   const rows = useMemo(
     () =>
@@ -209,7 +210,9 @@ export const PostsPage = () => {
             )}
           </Form>
         </Flex>
+      </Stack>
 
+      <Stack>
         <DynamicTable
           head={head}
           rows={rows}

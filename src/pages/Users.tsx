@@ -37,24 +37,6 @@ const AvatarWrapper: FC<{ children: ReactNode }> = ({ children }) => (
 );
 
 export const UsersPage = () => {
-  const head = {
-    cells: [
-      {
-        key: 'name',
-        content: t('label.name'),
-        width: 25
-      },
-      {
-        key: 'email',
-        content: t('label.email')
-      },
-      {
-        key: 'action',
-        content: ''
-      }
-    ]
-  };
-
   const [users, setUsers] = useState<User[]>([]);
 
   const { isLoading, isError, data, error } = useQuery<User[]>(
@@ -99,6 +81,25 @@ export const UsersPage = () => {
       ),
     [autocompleteList, fieldValue]
   );
+
+  const head = {
+    cells: [
+      {
+        key: 'name',
+        content: t('label.name'),
+        width: 25
+      },
+      {
+        key: 'email',
+        content: t('label.email')
+      },
+      {
+        key: 'action',
+        content: '',
+        width: 10
+      }
+    ]
+  };
 
   const rows = useMemo(
     () =>
@@ -192,7 +193,9 @@ export const UsersPage = () => {
             )}
           </Form>
         </Flex>
+      </Stack>
 
+      <Stack>
         <DynamicTable
           head={head}
           rows={rows}

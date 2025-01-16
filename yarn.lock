@@ -214,6 +214,20 @@
     "@emotion/react" "^11.7.1"
     react-beautiful-dnd "^12.2.0"
 
+"@atlaskit/empty-state@^8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@atlaskit/empty-state/-/empty-state-8.1.1.tgz#7373c67d1fc7c80cdb50e1c0e9174d73429d7108"
+  integrity sha512-IfquNJ29LpFjUUrWntG6hneuXPnub0VClTA1YD1y1A5ea7q1FNkc5Bvb3zVviypQni9qxsPAiiMwQAdhFnPq0A==
+  dependencies:
+    "@atlaskit/button" "^20.3.0"
+    "@atlaskit/heading" "^4.0.0"
+    "@atlaskit/primitives" "^13.3.0"
+    "@atlaskit/spinner" "^16.3.0"
+    "@atlaskit/theme" "^14.0.0"
+    "@atlaskit/tokens" "^3.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@compiled/react" "^0.18.1"
+
 "@atlaskit/focus-ring@^2.0.0":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@atlaskit/focus-ring/-/focus-ring-2.0.1.tgz#04ee98cac4b8ac1454ad25d2fc5201dc6f4c88c6"

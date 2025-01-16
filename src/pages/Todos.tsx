@@ -22,22 +22,24 @@ export const TodosPage = () => {
 
   if (isError) return <pre>{JSON.stringify(error, null, 2)}</pre>;
 
-  if (isLoading) return <Spinner />;
-
   return (
     <Stack space="space.300">
       <Heading size="large">{t('label.todo')}</Heading>
 
       <Heading size="small">{`User ID: ${id}`} </Heading>
 
-      <Stack space="space.100">
-        {todos.map(({ id, title, completed }) => (
-          <Flex key={id} alignItems="center" gap="space.050">
-            {completed ? <TaskIcon label="completed" /> : <ImageBorderIcon label="incomplete" />}
-            {title}
-          </Flex>
-        ))}
-      </Stack>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <Stack space="space.100">
+          {todos.map(({ id, title, completed }) => (
+            <Flex key={id} alignItems="center" gap="space.050">
+              {completed ? <TaskIcon label="completed" /> : <ImageBorderIcon label="incomplete" />}
+              {title}
+            </Flex>
+          ))}
+        </Stack>
+      )}
     </Stack>
   );
 };

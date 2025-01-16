@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { UsersPage, UserPage, PostsPage, PostPage, TodosPage } from './pages';
 import { useTranslation } from 'react-i18next';
 import { resources } from 'i18n/config';
@@ -38,6 +38,13 @@ function App() {
           v7_startTransition: true
         }}
       >
+        <nav>
+          <Flex gap="space.050">
+            <Link to="/users">User</Link>
+            <Link to="/posts">Post</Link>
+          </Flex>
+        </nav>
+
         <Routes>
           <Route path="/" element={<Navigate to="/users" replace />}></Route>
           <Route path="/users" element={<UsersPage />}></Route>

@@ -11,6 +11,7 @@ import { t } from 'i18next';
 import { User } from 'lib/types';
 import Heading from '@atlaskit/heading';
 import { Stack } from '@atlaskit/primitives';
+import toast from 'react-hot-toast';
 
 type UserForm = Omit<User, 'id'>;
 
@@ -31,7 +32,11 @@ export const UserPage = ({ title }: { title: string }) => {
     });
   };
 
-  const updateUserMutation = useMutation(updateUser);
+  const updateUserMutation = useMutation(updateUser, {
+    onSuccess: () => {
+      toast('Update successful');
+    }
+  });
 
   const { isLoading: isUpdating } = updateUserMutation;
 

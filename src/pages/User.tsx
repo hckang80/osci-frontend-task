@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Form, { ErrorMessage, Field, FormFooter } from '@atlaskit/form';
+import Form, { ErrorMessage, Field, FormFooter, useFormState } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
 import ButtonGroup from '@atlaskit/button/button-group';
 import Button from '@atlaskit/button/new';
@@ -83,9 +83,7 @@ export const UserPage = ({ title }: { title: string }) => {
                   <Button appearance="subtle" onClick={() => navigate(-1)}>
                     {t('label.cancel')}
                   </Button>
-                  <Button type="submit" appearance="primary" isLoading={isUpdating}>
-                    {t('label.edit')}
-                  </Button>
+                  <FormSubmitButton isUpdating={isUpdating} />
                 </ButtonGroup>
               </FormFooter>
             </form>
@@ -93,5 +91,26 @@ export const UserPage = ({ title }: { title: string }) => {
         </Form>
       )}
     </Stack>
+  );
+};
+
+const FormSubmitButton = ({ isUpdating }: { isUpdating: boolean }) => {
+  const formContext = useFormState<UserForm>({
+    values: true,
+    pristine: true,
+    dirty: true
+  });
+
+  return (
+    <>
+      <Button
+        type="submit"
+        appearance="primary"
+        isLoading={isUpdating}
+        isDisabled={formContext?.pristine}
+      >
+        {t('label.edit')}
+      </Button>
+    </>
   );
 };

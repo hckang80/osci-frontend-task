@@ -5,6 +5,7 @@ import { resources } from 'i18n/config';
 import { Flex } from '@atlaskit/primitives';
 import Button from '@atlaskit/button/new';
 import Router from './Router';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const { i18n } = useTranslation();
@@ -30,6 +31,8 @@ function App() {
           </Button>
         ))}
       </Flex>
+
+      <Toaster />
 
       <Router />
     </>

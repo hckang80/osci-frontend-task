@@ -11,7 +11,7 @@ yarn start
 ## Description
 
 - 주메뉴는 User, Post로 구성되어 있습니다.
-- User 페이지에서는 이름을 선택하면 할일 목록 화면으로 이동합니다.
+- [User 페이지](https://osci-frontend-task.vercel.app/users)에서는 이름을 선택하면 할일 목록 화면으로 이동합니다.
 
 ## Used Atlassian Design Components
 

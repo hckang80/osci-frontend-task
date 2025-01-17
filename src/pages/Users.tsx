@@ -21,6 +21,8 @@ import type { User } from 'lib/types';
 import { t } from 'i18next';
 import { useDebounce } from 'hooks/use-debounce';
 
+const ROWS_PER_PAGE = 5;
+
 const nameWrapperStyles = css({
   display: 'flex',
   alignItems: 'center'
@@ -190,7 +192,7 @@ export const UsersPage = ({ title }: { title: string }) => {
         <DynamicTable
           head={head}
           rows={rows}
-          rowsPerPage={5}
+          rowsPerPage={ROWS_PER_PAGE}
           defaultPage={currentPage}
           isFixedSize
           isLoading={isLoading}

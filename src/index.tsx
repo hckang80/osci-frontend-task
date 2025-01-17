@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import './index.css';
 import App from './App';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+// import { ReactQueryDevtools } from 'react-query/devtools';
 import { Box } from '@atlaskit/primitives';
 
 const queryClient = new QueryClient({
@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
 const rootElement = document.getElementById('root');
 render(
   <QueryClientProvider client={queryClient}>
-    <ReactQueryDevtools initialIsOpen={true} />
+    {/* <ReactQueryDevtools initialIsOpen={true} /> */}
     <Box padding="space.200">
       <App />
     </Box>

@@ -8,7 +8,7 @@ import Spinner from '@atlaskit/spinner';
 import { fetcher } from 'lib/utils';
 import { useMutation, useQuery } from 'react-query';
 import { t } from 'i18next';
-import { User } from 'lib/types';
+import type { User } from 'lib/types';
 import Heading from '@atlaskit/heading';
 import { Stack } from '@atlaskit/primitives';
 import toast from 'react-hot-toast';

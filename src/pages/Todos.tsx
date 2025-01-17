@@ -1,4 +1,4 @@
-import { Todo } from 'lib/types';
+import type { Todo } from 'lib/types';
 import { fetcher } from 'lib/utils';
 import React from 'react';
 import { useQuery } from 'react-query';

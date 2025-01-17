@@ -11,7 +11,7 @@ import { useQuery } from 'react-query';
 import { fetcher, toReadableDate } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
-import { Post } from 'lib/types';
+import type { Post } from 'lib/types';
 import Heading from '@atlaskit/heading';
 import { useDebounce } from 'hooks/use-debounce';
 

@@ -6,7 +6,7 @@ import Avatar from '@atlaskit/avatar';
 import Comment, { CommentAction, CommentAuthor, CommentTime } from '@atlaskit/comment';
 import { fetcher, toReadableDate } from 'lib/utils';
 import { useQueries } from 'react-query';
-import { Post, User } from 'lib/types';
+import type { Post, User } from 'lib/types';
 import Heading from '@atlaskit/heading';
 import { t } from 'i18next';
 

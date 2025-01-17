@@ -17,7 +17,7 @@ import EmptyState from '@atlaskit/empty-state';
 import { useQuery } from 'react-query';
 import { fetcher } from 'lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { User } from 'lib/types';
+import type { User } from 'lib/types';
 import { t } from 'i18next';
 import { useDebounce } from 'hooks/use-debounce';
 

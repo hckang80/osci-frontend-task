@@ -36,3 +36,5 @@ Failed to parse source map from '/Users/sky/Desktop/osci-frontend-task/node_modu
 ```
 
 [레퍼런스](https://community.developer.atlassian.com/t/error-when-i-use-atlaskit-editor-core-with-forge-custom-ui/62091/9)를 참고하여 해결을 시도해 보았으나 해결되지 않았습니다. 솔직히 고백합니다.
+
+<img width="534" alt="Image" src="https://github.com/user-attachments/assets/066ca6ae-5100-4bd9-a388-f4056c63faa5" />

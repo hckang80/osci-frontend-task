@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Form, { ErrorMessage, Field, FormFooter, useFormState } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
@@ -32,9 +32,16 @@ export const UserPage = ({ title }: { title: string }) => {
     });
   };
 
+  const [formKey, setFormKey] = useState(0);
+
+  const resetForm = () => {
+    setFormKey((prev) => prev + 1);
+  };
+
   const updateUserMutation = useMutation(updateUser, {
     onSuccess: () => {
       toast('Update successful');
+      resetForm();
     }
   });
 
@@ -66,7 +73,7 @@ export const UserPage = ({ title }: { title: string }) => {
       ) : (
         <Form onSubmit={handleSubmit}>
           {({ formProps }) => (
-            <form {...formProps}>
+            <form {...formProps} key={formKey}>
               <Field name="name" label={t('label.name')} defaultValue={user.name} isRequired>
                 {({ fieldProps }) => <Textfield {...fieldProps} isReadOnly={isUpdating} />}
               </Field>

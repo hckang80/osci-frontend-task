@@ -15,6 +15,9 @@ yarn start
 
 ## Used Atlassian Design Components
 
+- DynamicTable
+  - 테이블 양식 및 페이징을 쉽게 표현
+  - defaultPage 속성을 사용하여 페이징 연동
 - Form, Field, Textfield
   - [User 수정](https://osci-frontend-task.vercel.app/users/1) 등 다양한 폼에 사용하여 폼 구성과 검증을 쉽게 처리
 - useFormState
